@@ -1,0 +1,110 @@
+Prompt rico para gerar loja Next.js moderna com carrossel, sacola, tema e categorias
+
+    Crie uma loja virtual moderna e responsiva usando:
+
+        React + Next.js (App Router, versão 13+)
+
+        Tailwind CSS
+
+        TypeScript
+
+        Sem integração com banco de dados ou GraphQL (usar apenas mock/local data)
+
+        Os dados devem vir de um arquivo local chamado data/categories.ts, com estrutura:
+
+    export const categories = [
+      {
+        slug: "camisetas",
+        name: "Camisetas",
+        seoTitle: "Camisetas estilosas",
+        description: "Camisetas para o dia a dia",
+        products: [
+          { id: "p1", name: "Camiseta Básica", price: 49.9, image: "/img/camiseta-basica.jpg" },
+          { id: "p2", name: "Camiseta Estampada", price: 69.9, image: "/img/camiseta-estampada.jpg" }
+        ]
+      }
+    ]
+
+        As imagens dos produtos devem estar em /public/img
+
+    🎯 Requisitos de Funcionalidade
+
+        Navegação entre categorias (por slug)
+
+        Página inicial com carrossel automático de produtos destacados
+
+            Deve rolar automaticamente
+
+            Deve ter onClick nos cards para adicionar um produto aleatório à sacola
+
+        Página do produto com:
+
+            Imagem grande e detalhes
+
+            Seletor de tamanhos: botões "P", "M", "G" (com estado selecionado)
+
+            Botão "Adicionar à sacola"
+
+        Componente Sacola lateral (BagSideMenu) com:
+
+            Listagem de produtos
+
+            Ações: adicionar, remover, alterar quantidade
+
+            Subtotal, total e botão "Finalizar compra"
+
+            Persistência via localStorage
+
+        Menu de navegação responsivo com:
+
+            Links para categorias
+
+            Login
+
+            Cadastro
+
+            Sacola (ícone com contador)
+
+        Autenticação mock:
+
+            Login e cadastro com validação simples
+
+            Armazenado em localStorage
+
+    💅 Estilo visual
+
+        Inspirado em lojas modernas da Vercel Commerce
+
+        Paleta de cores suaves com suporte a tema claro/escuro
+
+            Use Tailwind com dark: para condicionar os estilos
+
+        Tipografia com fontes modernas (Inter, sans-serif)
+
+        Layout espaçado, elegante e limpo
+
+        Transições suaves nos botões e carrossel
+
+    🧱 Estrutura do projeto sugerida:
+
+        /src/app/ → rotas com App Router
+
+        /src/components/ → Navbar, Footer, ProductCard, BagSideMenu, Carousel, etc.
+
+        /src/data/categories.ts → mock de produtos por categoria
+
+        /public/img/ → imagens de produtos
+
+        CartContext.tsx → contexto global para sacola
+
+        AuthContext.tsx → contexto mock de autenticação
+
+    ⚠️ Importante: não usar Saleor, Shopify, GraphQL, ou APIs externas. Tudo deve ser estático e baseado em arquivos locais.
+
+🧩 Extras opcionais para o gerador
+
+    Use useEffect e setInterval para o carrossel animado
+
+    Componente de ThemeSwitcher para alternar entre claro/escuro
+
+    Use Headless UI ou Radix UI se quiser melhorar UX sem dependência visual

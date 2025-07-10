@@ -1,0 +1,102 @@
+Crie uma loja virtual moderna e responsiva usando:
+
+    Next.js (App Router) + React + TypeScript
+
+    Tailwind CSS
+
+    Sem integração com banco de dados ou GraphQL
+
+    Dados mockados em /src/data/categories.ts com imagens em /public/img
+
+Exemplo de estrutura de dados:
+
+export const categories = [
+  {
+    slug: "camisetas",
+    name: "Camisetas",
+    products: [
+      { id: "p1", name: "Camiseta Básica", price: 49.9, image: "/img/camiseta-basica.jpg" },
+      { id: "p2", name: "Camiseta Estampada", price: 69.9, image: "/img/camiseta-estampada.jpg" }
+    ]
+  }
+];
+
+🧭 Navegação e Estrutura:
+
+    Página inicial com grid de categorias (cards clicáveis)
+
+    Ao clicar num card, ir para /[categoria] com lista de produtos
+
+    Cada card de produto é clicável e leva à página /produto/[id]
+
+    Na página do produto:
+
+        Exibe imagem, nome, preço e descrição
+
+        Botões "P", "M", "G" para escolher tamanho
+
+        Botão “Adicionar à sacola”
+
+🛒 Sacola lateral (BagSideMenu)
+
+    Abrir do lado direito com listagem de itens
+
+    Itens com imagem, nome, quantidade, preço, botão remover
+
+    Mostrar subtotal e botão "Finalizar Compra"
+
+    Estado global via CartContext com persistência no localStorage
+
+🎠 Carrossel de produtos
+
+    Posicionado abaixo da grid principal na home
+
+    Exibe cards de produtos (não banners ou imagens grandes)
+
+    Deve ser responsivo, com scroll horizontal automático
+
+    Cada card do carrossel também deve ter botão de "Adicionar à sacola"
+
+🌒 Tema & Estilo
+
+    Layout inspirado em lojas da Vercel Commerce
+
+    Tema claro e escuro usando dark: do Tailwind
+
+    Cores suaves, fontes modernas (ex: Inter)
+
+    Transições suaves nos botões e hover
+
+🔗 Footer
+
+    Exibir:
+
+        Endereço da loja física
+
+        Ícones para:
+
+            Facebook
+
+            Instagram
+
+            WhatsApp
+
+    Ícones com animações sutis no hover (como leve scale, opacity ou translate)
+
+    Estilizado com Tailwind para combinar com o tema claro/escuro
+
+🧱 Estrutura recomendada:
+
+    /src/app/ — páginas (usando App Router)
+
+    /src/components/ — ProductCard, BagSideMenu, Navbar, Footer, Carousel, etc.
+
+    /src/data/categories.ts — mock dos produtos por categoria
+
+    /src/context/CartContext.tsx — gerenciar sacola
+
+    /src/context/AuthContext.tsx — login/cadastro fictício (opcional)
+
+    /public/img/ — imagens de produtos
+
+⚠️ Não usar APIs, GraphQL, Shopify, Saleor ou Medusa. Tudo local e 100% mock.
