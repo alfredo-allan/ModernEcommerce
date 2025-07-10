@@ -1,0 +1,2 @@
+This directory contains product images.
+Images are loaded from external URLs (Unsplash) as specified in the requirements.
