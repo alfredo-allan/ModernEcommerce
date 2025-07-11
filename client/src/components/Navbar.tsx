@@ -11,13 +11,13 @@ export const Navbar = () => {
   const { totalItems, toggleCart } = useCart();
 
   return (
-    <nav className="sticky top-0 z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-700">
+    <nav className="font-sans sticky top-0 z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-700">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <Link href="/">
-            <h1 className="text-1xl font-bold text-blue-500 hover:text-blue-600 transition-colors cursor-pointer">
-              CEREJA DOCE CEREJA
+            <h1 className="font-sans text-1xl font-bold text-blue-500 hover:text-blue-600 transition-colors cursor-pointer">
+              CEREJA DOCE
             </h1>
           </Link>
 
@@ -43,10 +43,13 @@ export const Navbar = () => {
           <div className="flex items-center space-x-4">
             <ThemeToggle />
 
-            <Button variant="ghost" size="sm" className="text-sm font-medium">
-              <User className="h-4 w-4 mr-2" />
-              Login
-            </Button>
+            <Link href="/auth">
+              <Button variant="ghost" size="sm" className="text-sm font-medium">
+                <User className="h-4 w-4 mr-2" />
+                Login
+              </Button>
+            </Link>
+
 
             <Button
               variant="ghost"

@@ -46,6 +46,19 @@ export const categories: Category[] = [
         ],
         description: "ATENÇÃO: Bojo removível e alça regata. Disponível nos tamanhos P/ M(36 - 38) e G / GG(40 - 42). Nosso Macaquinho em Poliamida oferece durabilidade e conforto com tecido macio que modela o corpo, sem transparência para total segurança. Feito com material resistente que evita bolinhas e desbotamento, mantendo a peça sempre nova.Costuras reforçadas para maior resistência e liberdade de movimento. Importante: A tonalidade pode variar conforme o monitor, mas isso não afeta a qualidade do produto."
       },
+      {
+        id: "p17",
+        name: "Macaquinho",
+        price: 49.90,
+        images: [
+          "/img/littlemonkey_1.jpeg",
+          "/img/littlemonkey_category.jpeg",
+        ],
+        videos: [
+          "/videos/monkeyvideo.mp4" // caminho do seu vídeo
+        ],
+        description: "ATENÇÃO: Bojo removível e alça regata. Disponível nos tamanhos P/ M(36 - 38) e G / GG(40 - 42). Nosso Macaquinho em Poliamida oferece durabilidade e conforto com tecido macio que modela o corpo, sem transparência para total segurança. Feito com material resistente que evita bolinhas e desbotamento, mantendo a peça sempre nova.Costuras reforçadas para maior resistência e liberdade de movimento. Importante: A tonalidade pode variar conforme o monitor, mas isso não afeta a qualidade do produto."
+      },
 
     ]
   },

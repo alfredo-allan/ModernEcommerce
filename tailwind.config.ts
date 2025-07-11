@@ -85,6 +85,10 @@ export default {
         "accordion-up": "accordion-up 0.2s ease-out",
       },
     },
+    fontFamily: {
+      sans: ['Oswald', 'sans-serif'], // sobrescreve `font-sans`
+    },
+
   },
   plugins: [require("tailwindcss-animate"), require("@tailwindcss/typography")],
 } satisfies Config;

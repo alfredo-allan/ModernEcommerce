@@ -12,17 +12,20 @@ import { HomePage } from "./pages/HomePage";
 import { CategoryPage } from "./pages/CategoryPage";
 import { ProductPage } from "./pages/ProductPage";
 import NotFound from "@/pages/not-found";
+import { AuthPage } from './pages/AuthPage';
 
 function Router() {
   return (
     <Switch>
       <Route path="/" component={HomePage} />
-      <Route path="/:category" component={CategoryPage} />
+      <Route path="/auth" component={AuthPage} /> {/* <-- mover para cima */}
       <Route path="/produto/:id" component={ProductPage} />
+      <Route path="/:category" component={CategoryPage} /> {/* <-- fica por último */}
       <Route component={NotFound} />
     </Switch>
   );
 }
+
 
 function App() {
   return (

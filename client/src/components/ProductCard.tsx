@@ -36,7 +36,7 @@ export const ProductCard = ({ product, showAddToCart = false }: ProductCardProps
             <Button
               size="icon"
               onClick={handleAddToCart}
-              className={`absolute top-4 right-4 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 ${isAdding
+              className={`absolute top-4 right-4 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-100 md:duration-500 ${isAdding
                 ? 'bg-green-500 hover:bg-green-600'
                 : 'bg-white/90 dark:bg-gray-900/90 hover:bg-white dark:hover:bg-gray-900'
                 }`}
