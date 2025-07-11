@@ -23,27 +23,26 @@ export const ProductCard = ({ product, showAddToCart = false }: ProductCardProps
   };
 
   return (
-    <div className="group bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden hover:shadow-lg transition-shadow duration-300">
+    <div className="group h-full flex flex-col justify-between bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden hover:shadow-lg transition-shadow duration-300">
       <Link href={`/produto/${product.id}`}>
         <div className="relative overflow-hidden">
           <img
-            src={product.image}
+            src={product.images?.[0] || '/img/fallback.jpg'}
             alt={product.name}
             className="w-full h-72 object-cover group-hover:scale-105 transition-transform duration-300"
           />
+
           {showAddToCart && (
             <Button
               size="icon"
               onClick={handleAddToCart}
-              className={`absolute top-4 right-4 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 ${
-                isAdding 
-                  ? 'bg-green-500 hover:bg-green-600' 
-                  : 'bg-white/90 dark:bg-gray-900/90 hover:bg-white dark:hover:bg-gray-900'
-              }`}
+              className={`absolute top-4 right-4 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 ${isAdding
+                ? 'bg-green-500 hover:bg-green-600'
+                : 'bg-white/90 dark:bg-gray-900/90 hover:bg-white dark:hover:bg-gray-900'
+                }`}
             >
-              <ShoppingBag className={`h-4 w-4 ${
-                isAdding ? 'text-white' : 'text-gray-700 dark:text-gray-300'
-              }`} />
+              <ShoppingBag className={`h-4 w-4 ${isAdding ? 'text-white' : 'text-gray-700 dark:text-gray-300'
+                }`} />
             </Button>
           )}
         </div>
@@ -62,11 +61,10 @@ export const ProductCard = ({ product, showAddToCart = false }: ProductCardProps
               <Button
                 onClick={handleAddToCart}
                 size="sm"
-                className={`transition-colors ${
-                  isAdding 
-                    ? 'bg-green-500 hover:bg-green-600' 
-                    : 'bg-blue-500 hover:bg-blue-600'
-                }`}
+                className={`transition-colors ${isAdding
+                  ? 'bg-green-500 hover:bg-green-600'
+                  : 'bg-blue-500 hover:bg-blue-600'
+                  }`}
               >
                 {isAdding ? 'Adicionado!' : 'Adicionar'}
               </Button>

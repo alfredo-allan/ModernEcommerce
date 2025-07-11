@@ -25,7 +25,7 @@ export const BagSideMenu = () => {
               <X className="h-4 w-4" />
             </Button>
           </div>
-          
+
           {/* Items */}
           <div className="flex-1 overflow-y-auto p-6 space-y-4">
             {items.length === 0 ? (
@@ -83,7 +83,7 @@ export const BagSideMenu = () => {
               ))
             )}
           </div>
-          
+
           {/* Footer */}
           {items.length > 0 && (
             <div className="border-t border-gray-200 dark:border-gray-700 p-6 space-y-4">

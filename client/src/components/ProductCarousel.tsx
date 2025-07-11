@@ -12,7 +12,7 @@ export const ProductCarousel = () => {
         <div className="flex space-x-6 animate-slide">
           {/* Duplicate products for seamless infinite scroll */}
           {[...products, ...products].map((product, index) => (
-            <div key={`${product.id}-${index}`} className="flex-shrink-0 w-72">
+            <div key={`${product.id}-${index}`} className="flex-shrink-0 w-72 h-[460px]">
               <ProductCard product={product} showAddToCart />
             </div>
           ))}

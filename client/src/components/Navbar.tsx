@@ -16,11 +16,11 @@ export const Navbar = () => {
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <Link href="/">
-            <h1 className="text-2xl font-bold text-blue-500 hover:text-blue-600 transition-colors cursor-pointer">
-              Store
+            <h1 className="text-1xl font-bold text-blue-500 hover:text-blue-600 transition-colors cursor-pointer">
+              CEREJA DOCE CEREJA
             </h1>
           </Link>
-          
+
           {/* Navigation Links */}
           <div className="hidden md:block">
             <div className="ml-10 flex items-baseline space-x-8">
@@ -28,27 +28,26 @@ export const Navbar = () => {
                 <Link
                   key={category.slug}
                   href={`/${category.slug}`}
-                  className={`px-3 py-2 text-sm font-medium transition-colors ${
-                    location === `/${category.slug}`
-                      ? 'text-blue-500 dark:text-blue-400'
-                      : 'text-gray-700 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400'
-                  }`}
+                  className={`px-3 py-2 text-sm font-medium transition-colors ${location === `/${category.slug}`
+                    ? 'text-blue-500 dark:text-blue-400'
+                    : 'text-gray-700 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400'
+                    }`}
                 >
                   {category.name}
                 </Link>
               ))}
             </div>
           </div>
-          
+
           {/* Actions */}
           <div className="flex items-center space-x-4">
             <ThemeToggle />
-            
+
             <Button variant="ghost" size="sm" className="text-sm font-medium">
               <User className="h-4 w-4 mr-2" />
               Login
             </Button>
-            
+
             <Button
               variant="ghost"
               size="icon"
@@ -57,15 +56,15 @@ export const Navbar = () => {
             >
               <ShoppingBag className="h-4 w-4 text-gray-600 dark:text-gray-400" />
               {totalItems > 0 && (
-                <Badge 
-                  variant="destructive" 
+                <Badge
+                  variant="destructive"
                   className="absolute -top-1 -right-1 h-5 w-5 flex items-center justify-center p-0 text-xs bg-blue-500 hover:bg-blue-600"
                 >
                   {totalItems}
                 </Badge>
               )}
             </Button>
-            
+
             <Button variant="ghost" size="icon" className="md:hidden">
               <Menu className="h-4 w-4 text-gray-600 dark:text-gray-400" />
             </Button>

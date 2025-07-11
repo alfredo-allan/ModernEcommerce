@@ -2,9 +2,12 @@ export interface Product {
   id: string;
   name: string;
   price: number;
-  image: string;
+  image?: string; // opcional, pois agora temos images[]
+  images?: string[]; // já está no uso
+  videos?: string[]; // <- nova propriedade opcional
   description?: string;
 }
+
 
 export interface Category {
   slug: string;

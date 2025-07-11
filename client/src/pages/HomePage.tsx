@@ -11,7 +11,7 @@ export const HomePage = () => {
           Moda Moderna
         </h1>
         <p className="text-xl text-gray-600 dark:text-gray-400 mb-8 max-w-2xl mx-auto">
-          Descubra nossa coleção de roupas contemporâneas e acessórios únicos
+          Descubra nossa coleção de roupas e acessórios únicos
         </p>
       </section>
 

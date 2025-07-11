@@ -19,6 +19,7 @@ export const CartProvider = ({ children }: CartProviderProps) => {
   const [items, setItems] = useState<CartItem[]>([]);
   const [isOpen, setIsOpen] = useState(false);
 
+  // Carrega do localStorage ao montar
   useEffect(() => {
     const savedItems = localStorage.getItem('cartItems');
     if (savedItems) {
@@ -26,6 +27,7 @@ export const CartProvider = ({ children }: CartProviderProps) => {
     }
   }, []);
 
+  // Salva no localStorage sempre que items mudam
   useEffect(() => {
     localStorage.setItem('cartItems', JSON.stringify(items));
   }, [items]);
@@ -37,6 +39,7 @@ export const CartProvider = ({ children }: CartProviderProps) => {
       );
 
       if (existingItem) {
+        // Incrementa quantidade
         return prevItems.map(item =>
           item.id === product.id && item.size === size
             ? { ...item, quantity: item.quantity + 1 }
@@ -44,7 +47,17 @@ export const CartProvider = ({ children }: CartProviderProps) => {
         );
       }
 
-      return [...prevItems, { ...product, size, quantity: 1 }];
+      // Novo item: usa a primeira imagem de product.images ou fallback product.image
+      const image = product.images?.[0] || product.image || '';
+
+      return [...prevItems, {
+        id: product.id,
+        name: product.name,
+        price: product.price,
+        size,
+        quantity: 1,
+        image,
+      }];
     });
   };
 

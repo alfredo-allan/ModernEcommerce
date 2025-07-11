@@ -28,7 +28,9 @@ export const CategoryPage = () => {
           {category.name}
         </h1>
         {category.description && (
-          <p className="text-gray-600 dark:text-gray-400">{category.description}</p>
+          <p className="text-gray-600 dark:text-gray-400 whitespace-pre-line">
+            {category.description}
+          </p>
         )}
       </div>
 
