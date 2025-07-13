@@ -16,7 +16,7 @@ export const BagSideMenu = () => {
   };
 
   return (
-    <div className="fixed inset-0 z-50">
+    <div className="font-sans fixed inset-0 z-50">
       <div className="absolute inset-0 bg-black/50" onClick={toggleCart}></div>
       <div className="absolute right-0 top-0 h-full w-full max-w-md bg-white dark:bg-gray-900 shadow-xl animate-fade-in">
         <div className="flex flex-col h-full">

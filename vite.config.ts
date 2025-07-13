@@ -4,6 +4,7 @@ import path from 'path';
 
 export default defineConfig({
   plugins: [react()],
+  root: path.resolve(__dirname, "client"),
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "client", "src"),
@@ -11,7 +12,7 @@ export default defineConfig({
       "@assets": path.resolve(__dirname, "attached_assets"),
     }
   },
-  root: path.resolve(__dirname, "client"),
+  base: "./", // Adicionado
   build: {
     outDir: path.resolve(__dirname, "dist"),
     emptyOutDir: true

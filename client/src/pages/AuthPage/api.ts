@@ -36,7 +36,7 @@ export const registerClient = async (data: RegisterPayload) => {
             razao_social: data.razao_social?.trim(),
         };
 
-        const response = await axios.post('https://allan1992.pythonanywhere.com/clients', payload);
+        const response = await axios.post('http://127.0.0.1:8000/clients', payload);
         return { success: true, data: response.data };
     } catch (error: any) {
         return {
@@ -49,7 +49,7 @@ export const registerClient = async (data: RegisterPayload) => {
 
 export const loginClient = async (data: LoginPayload) => {
     try {
-        const response = await axios.post('https://allan1992.pythonanywhere.com/clients/login', data);
+        const response = await axios.post('http://127.0.0.1:8000/clients/login', data);
         return { success: true, data: response.data };
     } catch (error: any) {
         return {

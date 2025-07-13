@@ -1,7 +1,8 @@
-// client/src/pages/CheckoutPage/api.ts
 import axios from "axios";
 
-const API_BASE = "https://allan1992.pythonanywhere.com"; // ajuste conforme ambiente
+// ✅ APIs separadas
+const API_MERCADO_PAGO = "https://allan1992.pythonanywhere.com";
+const API_MELHOR_ENVIO = "http://127.0.0.1:8000"; // local para Melhor Envio
 
 export interface ProdutoFrete {
     name: string;
@@ -30,7 +31,7 @@ export const criarPagamento = async (payload: {
     }[];
 }) => {
     try {
-        const res = await axios.post(`${API_BASE}/payment/create`, payload, {
+        const res = await axios.post(`${API_MERCADO_PAGO}/payment/create`, payload, {
             withCredentials: true,
         });
         return { success: true, data: res.data };
@@ -43,17 +44,58 @@ export const criarPagamento = async (payload: {
     }
 };
 
+export const criarOrdem = async (payload: {
+    user_id: number;
+    order_id: string;
+    mercado_pago_order_id?: string | null;
+    mercado_pago_payment_id?: string | null;
+    payment_type?: string | null;
+    payment_status?: string | null;
+    payment_status_detail?: string | null;
+    products: {
+        name: string;
+        quantity: number;
+        unitary_value: number;
+    }[];
+    frete: number;
+    total: number;
+}) => {
+    try {
+        // ⚠️ Sanitize: converte `null` para `undefined`
+        const sanitizedPayload = {
+            ...payload,
+            mercado_pago_order_id: payload.mercado_pago_order_id || undefined,
+            mercado_pago_payment_id: payload.mercado_pago_payment_id || undefined,
+            payment_type: payload.payment_type || undefined,
+            payment_status: payload.payment_status || undefined,
+            payment_status_detail: payload.payment_status_detail || undefined,
+        };
+
+        const res = await axios.post(`${API_MERCADO_PAGO}/orders/`, sanitizedPayload, {
+            withCredentials: true,
+        });
+
+        return { success: true, data: res.data };
+    } catch (error: any) {
+        console.error("Erro ao criar ordem:", error);
+        return {
+            success: false,
+            message: error?.response?.data?.message || "Erro desconhecido",
+        };
+    }
+};
+
 export const getFrete = async (
     payload: CalcularFretePayload
 ): Promise<
     | {
         success: true;
-        data: any[]; // Mantém array completo para lógica de menor preço na view
+        data: any[];
     }
     | { success: false; error: string; details?: any }
 > => {
     try {
-        const response = await axios.post(`${API_BASE}/shipping`, payload);
+        const response = await axios.post(`${API_MELHOR_ENVIO}/shipping`, payload);
         const servicos = response.data;
 
         if (Array.isArray(servicos) && servicos.length > 0) {

@@ -2,14 +2,14 @@ import { useEffect, useState, useCallback } from "react";
 import { useCart } from "@/context/CartContext";
 import { useAuth } from "@/context/AuthContext";
 import { useLocation } from "wouter";
-import { getFrete, criarPagamento } from "./api";
+import { getFrete, criarPagamento, criarOrdem } from "./api";
 import { ResponseModal } from "@/components/ResponseModal";
 import AddressForm from "@/components/AddressForm";
 import { useTheme } from "@/context/ThemeContext";
 
 const CheckoutPage = () => {
     const { items, removeItem, updateQuantity } = useCart();
-    const { loggedInUser } = useAuth();
+    const { loggedInUser, loadingUser } = useAuth();
     const { theme } = useTheme();
     const [, navigate] = useLocation();
 
@@ -36,6 +36,8 @@ const CheckoutPage = () => {
     const [showModal, setShowModal] = useState(false);
 
     useEffect(() => {
+        if (loadingUser) return;
+
         if (loggedInUser?.endereco) {
             setEditableAddress({
                 cep: loggedInUser.endereco.cep || "",
@@ -45,25 +47,16 @@ const CheckoutPage = () => {
                 estado: loggedInUser.endereco.estado || "",
                 numero: "",
             });
-        } else {
-            setEditableAddress({
-                cep: "",
-                rua: "",
-                bairro: "",
-                cidade: "",
-                estado: "",
-                numero: "",
-            });
         }
-    }, [loggedInUser]);
+    }, [loggedInUser, loadingUser]);
 
     useEffect(() => {
-        if (!loggedInUser?.id) {
+        if (!loadingUser && !loggedInUser?.id) {
             setModalMessage("Você precisa estar logado para finalizar a compra.");
             setModalStatus("error");
             setShowModal(true);
         }
-    }, [loggedInUser]);
+    }, [loggedInUser, loadingUser]);
 
     const fetchFrete = useCallback(async (cep: string) => {
         if (!cep || items.length === 0) return;
@@ -119,12 +112,14 @@ const CheckoutPage = () => {
         if (!loggedInUser?.id) return;
         setIsLoadingCheckout(true);
 
+        const order_id = `PED-${Date.now()}`;
+
         try {
-            const res = await criarPagamento({
+            const pagamento = await criarPagamento({
                 user_id: loggedInUser.id,
                 amount: totalFinal,
                 frete: deliveryCost || 0,
-                order_id: `PED-${Date.now()}`,
+                order_id,
                 produtos: items.map((item) => ({
                     name: item.name,
                     quantity: item.quantity,
@@ -132,11 +127,29 @@ const CheckoutPage = () => {
                 })),
             });
 
-            if (res.success && res.data?.init_point) {
-                window.location.href = res.data.init_point;
+            if (pagamento.success && pagamento.data?.init_point) {
+                // ✅ cria order após preferência válida
+                await criarOrdem({
+                    user_id: loggedInUser.id,
+                    order_id,
+                    mercado_pago_order_id: null,
+                    mercado_pago_payment_id: null,
+                    payment_type: "pix",
+                    payment_status: "pending",
+                    payment_status_detail: "awaiting_payment",
+                    products: items.map((item) => ({
+                        name: item.name,
+                        quantity: item.quantity,
+                        unitary_value: item.price || 0,
+                    })),
+                    frete: deliveryCost || 0,
+                    total: totalFinal,
+                });
+
+                window.location.href = pagamento.data.init_point;
             } else {
                 setModalStatus("error");
-                setModalMessage(res.message || "Erro ao redirecionar para pagamento.");
+                setModalMessage(pagamento.message || "Erro ao redirecionar para pagamento.");
                 setShowModal(true);
             }
         } catch (err) {
@@ -156,7 +169,7 @@ const CheckoutPage = () => {
         : "bg-indigo-500 text-white hover:bg-indigo-600";
 
     return (
-        <div className={`min-h-screen px-4 py-6 ${bgMain}`}>
+        <div className={`font-sans min-h-screen px-4 py-6 ${bgMain}`}>
             <h1 className="text-2xl font-bold mb-6">Finalização da Compra</h1>
 
             <div className="grid md:grid-cols-3 gap-6">
