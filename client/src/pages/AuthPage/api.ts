@@ -26,7 +26,17 @@ export interface LoginPayload {
 
 export const registerClient = async (data: RegisterPayload) => {
     try {
-        const response = await axios.post('https://allan1992.pythonanywhere.com/clients', data);
+        // Higienização antes do envio
+        const payload = {
+            ...data,
+            email: data.email.trim().toLowerCase(),
+            cpf: data.cpf?.replace(/\D/g, ""),
+            cnpj: data.cnpj?.replace(/\D/g, ""),
+            nome: data.nome.trim(),
+            razao_social: data.razao_social?.trim(),
+        };
+
+        const response = await axios.post('https://allan1992.pythonanywhere.com/clients', payload);
         return { success: true, data: response.data };
     } catch (error: any) {
         return {
@@ -35,6 +45,7 @@ export const registerClient = async (data: RegisterPayload) => {
         };
     }
 };
+
 
 export const loginClient = async (data: LoginPayload) => {
     try {

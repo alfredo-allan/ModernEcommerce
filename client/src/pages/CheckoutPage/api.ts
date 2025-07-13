@@ -1,7 +1,7 @@
 // client/src/pages/CheckoutPage/api.ts
 import axios from "axios";
 
-const API_BASE = "https://allan1992.pythonanywhere.com/"; // ajuste conforme ambiente
+const API_BASE = "https://allan1992.pythonanywhere.com"; // ajuste conforme ambiente
 
 export interface ProdutoFrete {
     name: string;
