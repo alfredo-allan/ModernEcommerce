@@ -1,12 +1,19 @@
 import { X, Minus, Plus, Trash2 } from 'lucide-react';
 import { useCart } from '../context/CartContext';
 import { Button } from './ui/button';
+import { useLocation } from 'wouter'; // importar hook
 import { Separator } from './ui/separator';
 
 export const BagSideMenu = () => {
   const { items, removeItem, updateQuantity, totalPrice, isOpen, toggleCart } = useCart();
+  const [, navigate] = useLocation(); // hook de navegação
 
   if (!isOpen) return null;
+
+  const handleCheckoutNavigate = () => {
+    toggleCart(); // fecha o menu antes de navegar
+    navigate('/checkout'); // vai para a página de checkout
+  };
 
   return (
     <div className="fixed inset-0 z-50">
@@ -91,7 +98,10 @@ export const BagSideMenu = () => {
                 <span>Total:</span>
                 <span className="text-blue-500">R$ {totalPrice.toFixed(2).replace('.', ',')}</span>
               </div>
-              <Button className="w-full bg-blue-500 hover:bg-blue-600 text-white font-medium py-3">
+              <Button
+                className="w-full bg-blue-500 hover:bg-blue-600 text-white font-medium py-3"
+                onClick={handleCheckoutNavigate} // navegação adicionada aqui
+              >
                 Finalizar Compra
               </Button>
             </div>

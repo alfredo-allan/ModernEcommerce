@@ -89,6 +89,7 @@ export default {
       sans: ['Oswald', 'sans-serif'], // sobrescreve `font-sans`
     },
 
+
   },
   plugins: [require("tailwindcss-animate"), require("@tailwindcss/typography")],
 } satisfies Config;

@@ -5,27 +5,31 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { ThemeProvider } from "./context/ThemeContext";
 import { CartProvider } from "./context/CartContext";
+import { AuthProvider } from "./context/AuthContext"; // ✅ Import do AuthProvider
+
 import { Navbar } from "./components/Navbar";
 import { Footer } from "./components/Footer";
 import { BagSideMenu } from "./components/BagSideMenu";
+
 import { HomePage } from "./pages/HomePage";
 import { CategoryPage } from "./pages/CategoryPage";
 import { ProductPage } from "./pages/ProductPage";
 import NotFound from "@/pages/not-found";
-import { AuthPage } from './pages/AuthPage';
+import { AuthPage } from "./pages/AuthPage/AuthPage";
+import CheckoutPage from "./pages/CheckoutPage/CheckoutPage"; // importe sua página
 
 function Router() {
   return (
     <Switch>
       <Route path="/" component={HomePage} />
-      <Route path="/auth" component={AuthPage} /> {/* <-- mover para cima */}
+      <Route path="/auth" component={AuthPage} />
+      <Route path="/checkout" component={CheckoutPage} /> {/* Rota do Checkout */}
       <Route path="/produto/:id" component={ProductPage} />
-      <Route path="/:category" component={CategoryPage} /> {/* <-- fica por último */}
+      <Route path="/:category" component={CategoryPage} />
       <Route component={NotFound} />
     </Switch>
   );
 }
-
 
 function App() {
   return (
@@ -33,13 +37,15 @@ function App() {
       <TooltipProvider>
         <ThemeProvider>
           <CartProvider>
-            <div className="min-h-screen bg-background text-foreground">
-              <Navbar />
-              <Router />
-              <Footer />
-              <BagSideMenu />
-            </div>
-            <Toaster />
+            <AuthProvider> {/* ✅ Contexto de autenticação aqui */}
+              <div className="min-h-screen bg-background text-foreground">
+                <Navbar />
+                <Router />
+                <Footer />
+                <BagSideMenu />
+              </div>
+              <Toaster />
+            </AuthProvider>
           </CartProvider>
         </ThemeProvider>
       </TooltipProvider>

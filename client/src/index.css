@@ -23,7 +23,7 @@
   --destructive-foreground: hsl(60, 9.1%, 97.8%);
   --ring: hsl(20, 14.3%, 4.1%);
   --radius: 0.5rem;
-  
+
   /* Brand colors */
   --brand-50: hsl(213, 100%, 97%);
   --brand-100: hsl(214, 95%, 93%);
@@ -70,29 +70,48 @@
   .animate-slide {
     animation: slide 20s linear infinite;
   }
-  
+
   .animate-fade-in {
     animation: fadeIn 0.3s ease-in-out;
   }
-  
+
   .animate-scale-in {
     animation: scaleIn 0.2s ease-out;
   }
 }
 
 @keyframes slide {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
 }
 
 @keyframes fadeIn {
-  0% { opacity: 0; transform: translateY(10px); }
-  100% { opacity: 1; transform: translateY(0); }
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @keyframes scaleIn {
-  0% { opacity: 0; transform: scale(0.95); }
-  100% { opacity: 1; transform: scale(1); }
+  0% {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 .gradient-text {
@@ -100,4 +119,13 @@
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+}
+
+/* client/src/styles/globals.css */
+.input {
+  @apply w-full border border-input rounded-md bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring transition-colors px-4 py-2 text-sm
+  /* mobile padrão */
+  md:px-5 md:py-3 md:text-base md:h-12;
+  /* desktop maior */
+  cursor: pointer;
 }

@@ -2,6 +2,7 @@ import { Link, useLocation } from 'wouter';
 import { ShoppingBag, Menu, User } from 'lucide-react';
 import { ThemeToggle } from './ThemeToggle';
 import { useCart } from '../context/CartContext';
+import { useAuth } from '../context/AuthContext'; // 👈 novo
 import { categories } from '../data/categories';
 import { Button } from './ui/button';
 import { Badge } from './ui/badge';
@@ -9,6 +10,7 @@ import { Badge } from './ui/badge';
 export const Navbar = () => {
   const [location] = useLocation();
   const { totalItems, toggleCart } = useCart();
+  const { loggedInUser } = useAuth(); // 👈 pega o usuário logado
 
   return (
     <nav className="font-sans sticky top-0 z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-700">
@@ -29,8 +31,8 @@ export const Navbar = () => {
                   key={category.slug}
                   href={`/${category.slug}`}
                   className={`px-3 py-2 text-sm font-medium transition-colors ${location === `/${category.slug}`
-                    ? 'text-blue-500 dark:text-blue-400'
-                    : 'text-gray-700 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400'
+                      ? 'text-blue-500 dark:text-blue-400'
+                      : 'text-gray-700 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400'
                     }`}
                 >
                   {category.name}
@@ -46,10 +48,9 @@ export const Navbar = () => {
             <Link href="/auth">
               <Button variant="ghost" size="sm" className="text-sm font-medium">
                 <User className="h-4 w-4 mr-2" />
-                Login
+                {loggedInUser ? loggedInUser.nome : 'Login'}
               </Button>
             </Link>
-
 
             <Button
               variant="ghost"
