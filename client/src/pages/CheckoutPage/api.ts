@@ -123,3 +123,27 @@ export const getFrete = async (
         };
     }
 };
+
+export const gerarEtiqueta = async (objetoFrete: any) => {
+    try {
+        // 1. Adiciona ao carrinho
+        const resCart = await axios.post(`${API_MELHOR_ENVIO}/shipping/cart`, objetoFrete);
+        const shipmentId = resCart.data[0]?.id;
+        if (!shipmentId) throw new Error("ID do frete não retornado");
+
+        // 2. Paga etiqueta
+        await axios.post(`${API_MELHOR_ENVIO}/shipping/checkout`, [shipmentId]);
+
+        // 3. Gera etiqueta
+        const resEtiqueta = await axios.post(`${API_MELHOR_ENVIO}/shipping/generate`, [shipmentId]);
+
+        return {
+            success: true,
+            etiqueta: resEtiqueta.data[0],
+            link: resEtiqueta.data[0]?.label_url,
+        };
+    } catch (error: any) {
+        console.error("Erro no processo de gerar etiqueta:", error);
+        return { success: false, error: error.message };
+    }
+};

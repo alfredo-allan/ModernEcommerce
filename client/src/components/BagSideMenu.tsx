@@ -21,8 +21,8 @@ export const BagSideMenu = () => {
       <div className="absolute right-0 top-0 h-full w-full max-w-md bg-white dark:bg-gray-900 shadow-xl animate-fade-in">
         <div className="flex flex-col h-full">
           {/* Header */}
-          <div className="flex items-center justify-between p-6 border-b border-gray-200 dark:border-gray-700">
-            <h2 className="text-lg font-semibold text-gray-900 dark:text-white">Sua Sacola</h2>
+          <div className="font-sans flex items-center justify-between p-6 border-b border-gray-200 dark:border-gray-700">
+            <h2 className="font-sans text-lg font-semibold text-gray-900 dark:text-white">Sua Sacola</h2>
             <Button
               variant="ghost"
               size="icon"
@@ -34,7 +34,7 @@ export const BagSideMenu = () => {
           </div>
 
           {/* Items */}
-          <div className="flex-1 overflow-y-auto p-6 space-y-4">
+          <div className="font-sans flex-1 overflow-y-auto p-6 space-y-4">
             {items.length === 0 ? (
               <div className="text-center py-12">
                 <p className="text-gray-500 dark:text-gray-400">Sua sacola está vazia</p>
@@ -93,13 +93,13 @@ export const BagSideMenu = () => {
 
           {/* Footer */}
           {items.length > 0 && (
-            <div className="border-t border-gray-200 dark:border-gray-700 p-6 space-y-4">
-              <div className="flex justify-between text-lg font-semibold text-gray-900 dark:text-white">
+            <div className="font-sans border-t border-gray-200 dark:border-gray-700 p-6 space-y-4">
+              <div className="font-sans flex justify-between text-lg font-semibold text-gray-900 dark:text-white">
                 <span>Total:</span>
                 <span className="text-blue-500">R$ {totalPrice.toFixed(2).replace('.', ',')}</span>
               </div>
               <Button
-                className="w-full bg-blue-500 hover:bg-blue-600 text-white font-medium py-3"
+                className="font-sans w-full bg-blue-500 hover:bg-blue-600 text-white font-medium py-3"
                 onClick={handleCheckoutNavigate} // navegação adicionada aqui
               >
                 Finalizar Compra
