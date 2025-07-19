@@ -1,8 +1,8 @@
 import axios from "axios";
 
 // ✅ APIs separadas
-const API_MERCADO_PAGO = "https://allan1992.pythonanywhere.com";
-const API_MELHOR_ENVIO = "http://127.0.0.1:8000"; // local para Melhor Envio
+const API_MERCADO_PAGO = "https://vps60230.publiccloud.com.br";
+const API_MELHOR_ENVIO = "https://vps60230.publiccloud.com.br"; // local para Melhor Envio
 
 export interface ProdutoFrete {
     name: string;
@@ -71,7 +71,7 @@ export const criarOrdem = async (payload: {
             payment_status_detail: payload.payment_status_detail || undefined,
         };
 
-        const res = await axios.post(`${API_MERCADO_PAGO}/orders/`, sanitizedPayload, {
+        const res = await axios.post(`${API_MELHOR_ENVIO}/orders/`, sanitizedPayload, {
             withCredentials: true,
         });
 
@@ -95,7 +95,9 @@ export const getFrete = async (
     | { success: false; error: string; details?: any }
 > => {
     try {
-        const response = await axios.post(`${API_MELHOR_ENVIO}/shipping`, payload);
+        const response = await axios.post(`${API_MELHOR_ENVIO}/shipping`, payload, {
+            withCredentials: true,
+        });
         const servicos = response.data;
 
         if (Array.isArray(servicos) && servicos.length > 0) {

@@ -2,11 +2,18 @@ export interface Product {
   id: string;
   name: string;
   price: number;
-  image?: string; // opcional, pois agora temos images[]
-  images?: string[]; // já está no uso
-  videos?: string[]; // <- nova propriedade opcional
+  image?: string;
+  images?: string[];
+  videos?: string[];
   description?: string;
+
+  // Novos campos para frete
+  weight: number; // em kg
+  height?: number; // em cm (opcional, pode usar valor padrão caso não tenha)
+  width?: number;
+  length?: number;
 }
+
 
 
 export interface Category {

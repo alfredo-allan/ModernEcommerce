@@ -31,16 +31,28 @@ const AddressForm: React.FC<AddressFormProps> = ({
 
     const [loadingCep, setLoadingCep] = useState(false);
 
-    // Debounce para evitar múltiplas chamadas no CEP
-    const debounce = (fn: () => void, delay: number) => {
-        let timer: NodeJS.Timeout;
-        return () => {
-            clearTimeout(timer);
-            timer = setTimeout(fn, delay);
-        };
+    // Função que formata o CEP para exibição: 04253000 -> 04253-000
+    const formatCep = (value: string) => {
+        const numbers = value.replace(/\D/g, "");
+        if (numbers.length <= 5) return numbers;
+        if (numbers.length <= 8) return numbers.replace(/^(\d{5})(\d{0,3})/, "$1-$2");
+        return value;
     };
 
-    // Busca endereço no ViaCEP
+    // Atualiza o estado local com CEP formatado no input
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const { name, value } = e.target;
+
+        if (name === "cep") {
+            // Atualiza o estado local com CEP formatado
+            const formattedCep = formatCep(value);
+            setAddress((prev) => ({ ...prev, cep: formattedCep }));
+        } else {
+            setAddress((prev) => ({ ...prev, [name]: value }));
+        }
+    };
+
+    // Busca endereço no ViaCEP (com cep limpo)
     const fetchAddressByCep = useCallback(() => {
         const cepLimpo = address.cep.replace(/\D/g, "");
         if (cepLimpo.length !== 8) return;
@@ -60,29 +72,28 @@ const AddressForm: React.FC<AddressFormProps> = ({
                 }
             })
             .catch(() => {
-                // Pode adicionar tratamento de erro aqui
+                // tratamento de erro opcional
             })
             .finally(() => setLoadingCep(false));
     }, [address.cep]);
 
-    // Debounced fetch
+    // Debounce para evitar múltiplas chamadas
     useEffect(() => {
-        const debouncedFetch = debounce(fetchAddressByCep, 700);
-        debouncedFetch();
+        const timer = setTimeout(() => {
+            fetchAddressByCep();
+        }, 700);
+        return () => clearTimeout(timer);
     }, [address.cep, fetchAddressByCep]);
 
-    // Sempre notifica o pai das mudanças do endereço
+    // Notifica o pai com endereço, enviando CEP limpo (sem hífen)
     useEffect(() => {
-        onAddressChange(address);
+        onAddressChange({
+            ...address,
+            cep: address.cep.replace(/\D/g, ""), // **importante: limpa o CEP antes de enviar**
+        });
     }, [address, onAddressChange]);
 
-    // Atualiza o estado local no input
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const { name, value } = e.target;
-        setAddress((prev) => ({ ...prev, [name]: value }));
-    };
-
-    // Classes tema e responsividade
+    // Classes de estilo (tema)
     const inputBaseClass =
         "border rounded px-3 py-2 focus:outline-none focus:ring-2 transition-colors w-full";
     const inputThemeClass =
@@ -102,7 +113,7 @@ const AddressForm: React.FC<AddressFormProps> = ({
                     placeholder="CEP"
                     value={address.cep}
                     onChange={handleChange}
-                    maxLength={9}
+                    maxLength={9} // 8 números + hífen
                     required
                     className={`${inputBaseClass} ${inputThemeClass}`}
                     autoComplete="postal-code"

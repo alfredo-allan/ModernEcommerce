@@ -11,6 +11,7 @@ export const categories: Category[] = [
         id: "p1",
         name: "Macaquinho",
         price: 49.90,
+        weight: 0.25, // em kg = 250g
         images: [
           "/img/littlemonkey_category.jpeg",
           "/img/littlemonkey_1.jpeg",
@@ -24,6 +25,7 @@ export const categories: Category[] = [
         id: "p2",
         name: "Macaquinho",
         price: 69.90,
+        weight: 0.25, // em kg = 250g
         images: [
           "/img/littlebluemonkey.jpeg",
           "/img/littlebluemonkey_1.jpeg",
@@ -37,6 +39,7 @@ export const categories: Category[] = [
         id: "p5",
         name: "Macaquinho",
         price: 59.90,
+        weight: 0.25, // em kg = 250g
         images: [
           "/img/littlegreenmonkey.jpeg",
           "/img/littlegreenmonkey_1.jpeg",
@@ -50,6 +53,7 @@ export const categories: Category[] = [
         id: "p17",
         name: "Macaquinho",
         price: 49.90,
+        weight: 0.25, // em kg = 250g
         images: [
           "/img/littlemonkey_1.jpeg",
           "/img/littlemonkey_category.jpeg",
@@ -65,13 +69,14 @@ export const categories: Category[] = [
   {
     slug: "short",
     name: "Short Academia fitness Feminino",
-    seoTitle: "Calças modernas",
+    seoTitle: "Short Academia",
     description: "CINTURA ALTA | MODELA & LEVANTA BUMBUM",
     products: [
       {
         id: "p3",
         name: "Short Academia fitness Feminino Roxo",
         price: 129.90,
+        weight: 0.15, // em kg = 150g
         images: [
           "/img/blueshorts.jpeg",
           "/img/blueshorts_1.jpeg",
@@ -82,6 +87,7 @@ export const categories: Category[] = [
         id: "p7",
         name: "Short Academia fitness Feminino Cinza",
         price: 109.90,
+        weight: 0.15, // em kg = 150g
         images: [
           "/img/grayshorts.jpeg",
           "/img/grayshorts_1.jpeg",
@@ -94,6 +100,7 @@ export const categories: Category[] = [
         id: "p8",
         name: "Short Academia fitness Feminino Verde",
         price: 89.90,
+        weight: 0.15, // em kg = 150g
         images: [
           "/img/greenshorts_1.jpeg",
           "/img/greenshorts.jpeg",
@@ -105,6 +112,7 @@ export const categories: Category[] = [
         id: "p11",
         name: "Short Academia fitness Feminino Cinza Claro",
         price: 89.90,
+        weight: 0.15, // em kg = 150g
         images: [
           "/img/lightgrayshorts.jpeg",
           "/img/lightgrayshorts_1.jpeg"
@@ -115,6 +123,7 @@ export const categories: Category[] = [
         id: "p12",
         name: "Short Academia fitness Feminino Vermelho",
         price: 89.90,
+        weight: 0.15, // em kg = 150g
         images: [
           "/img/redshorts.jpeg",
           "/img/redshorts_1.jpeg"
@@ -127,13 +136,14 @@ export const categories: Category[] = [
   {
     slug: "conjunto legging",
     name: "Kit Legging + Top",
-    seoTitle: "",
+    seoTitle: "Kit Legging",
     description: "Acessórios para completar seu look",
     products: [
       {
         id: "11",
         name: "Kit Legging + Top",
         price: 39.90,
+        weight: 0.38, // em kg = 380g
         images: [
           "/img/kitlegginggreen.jpeg",
           "/img/kitlegginggreen_1.jpeg",
@@ -144,6 +154,7 @@ export const categories: Category[] = [
         id: "p13",
         name: "Kit Legging + Top",
         price: 39.90,
+        weight: 0.38, // em kg = 380g
         images: [
           "/img/kitleggingred.jpeg",
           "/img/kitleggingred_1.jpeg",
@@ -154,6 +165,7 @@ export const categories: Category[] = [
         id: "p16",
         name: "Kit Legging + Top",
         price: 39.90,
+        weight: 0.38, // em kg = 380g
         images: [
           "/img/kitleggingray.jpeg",
           "/img/kitleggingray_1.jpeg",
@@ -164,6 +176,7 @@ export const categories: Category[] = [
         id: "p14",
         name: "Kit Legging + Top",
         price: 39.90,
+        weight: 0.38, // em kg = 380g
         images: [
           "/img/kitlegginpurple.jpeg",
           "/img/kitlegginpurple_1.jpeg",
@@ -174,6 +187,7 @@ export const categories: Category[] = [
         id: "p15",
         name: "Kit Legging + Top",
         price: 39.90,
+        weight: 0.38, // em kg = 380g
         images: [
           "/img/kitleggingray_2.jpeg",
           "/img/kitleggingray_3.jpeg",
@@ -183,6 +197,7 @@ export const categories: Category[] = [
       {
         id: "p15",
         name: "Kit Legging + Top",
+        weight: 0.38, // em kg = 380g
         price: 39.90,
         images: [
           "/img/kitlegginpink.jpeg",

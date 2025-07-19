@@ -7,11 +7,24 @@ import { ResponseModal } from "@/components/ResponseModal";
 import AddressForm from "@/components/AddressForm";
 import { useTheme } from "@/context/ThemeContext";
 
+type FreteOption = {
+    price: string; // pode ser number dependendo da API
+    name: string;
+    delivery_time: number;
+    error?: string;
+};
+
+type FreteResponse =
+    | { success: true; data: FreteOption[] }
+    | { success: false; error: string; details?: any };
+
 const CheckoutPage = () => {
     const { items, removeItem, updateQuantity } = useCart();
     const { loggedInUser, loadingUser } = useAuth();
     const { theme } = useTheme();
     const [, navigate] = useLocation();
+
+    const sanitizeCep = (cep: string) => cep.replace(/\D/g, "");
 
     const [editableAddress, setEditableAddress] = useState({
         cep: "",
@@ -59,29 +72,34 @@ const CheckoutPage = () => {
     }, [loggedInUser, loadingUser]);
 
     const fetchFrete = useCallback(async (cep: string) => {
-        if (!cep || items.length === 0) return;
+        const cleanCep = sanitizeCep(cep);
+        if (!cleanCep || items.length === 0) return;
+
         setIsLoadingFrete(true);
 
         const payload = {
-            cep,
+            cep: cleanCep,
             produtos: items.map((item) => ({
                 name: item.name,
                 quantity: item.quantity,
                 unitary_value: item.price || 0,
-                height: 10,
-                width: 10,
-                length: 10,
-                weight: 0.3,
+                height: item.height ?? 10,
+                width: item.width ?? 10,
+                length: item.length ?? 10,
+                weight: item.weight ?? 0.3,
             })),
         };
 
         try {
-            const res = await getFrete(payload);
+            const res: FreteResponse = await getFrete(payload);
 
-            if (res.success && Array.isArray(res.data)) {
-                const valid = res.data.filter((opt: any) => opt.price && !opt.error);
-                if (valid.length) {
-                    const menor = valid.reduce((a, b) => parseFloat(a.price) < parseFloat(b.price) ? a : b);
+            if (res.success) {
+                const valid = res.data.filter((opt) => opt.price && !opt.error);
+
+                if (valid.length > 0) {
+                    const menor = valid.reduce((a: FreteOption, b: FreteOption) =>
+                        parseFloat(a.price) < parseFloat(b.price) ? a : b
+                    );
                     setDeliveryCost(parseFloat(menor.price));
                     setSelectedFrete({
                         price: parseFloat(menor.price),
@@ -91,9 +109,12 @@ const CheckoutPage = () => {
                 } else {
                     setDeliveryCost(null);
                 }
+            } else {
+                console.error("Erro na resposta do frete:", res.error);
+                setDeliveryCost(null);
             }
-        } catch (err) {
-            console.error("Erro ao buscar frete:", err);
+        } catch (error) {
+            console.error("Erro ao calcular frete:", error);
             setDeliveryCost(null);
         } finally {
             setIsLoadingFrete(false);
@@ -128,7 +149,6 @@ const CheckoutPage = () => {
             });
 
             if (pagamento.success && pagamento.data?.init_point) {
-                // ✅ cria order após preferência válida
                 await criarOrdem({
                     user_id: loggedInUser.id,
                     order_id,
@@ -167,6 +187,16 @@ const CheckoutPage = () => {
     const btnPrimary = theme === "dark"
         ? "bg-indigo-600 text-white hover:bg-indigo-700"
         : "bg-indigo-500 text-white hover:bg-indigo-600";
+    function formatCep(value: string) {
+        // Remove tudo que não for número
+        const numbers = value.replace(/\D/g, "");
+
+        // Se tiver mais que 8, mostra tudo menos o último, para manter zero a mais
+        if (numbers.length <= 5) return numbers;
+        if (numbers.length <= 8) return numbers.replace(/^(\d{5})(\d{0,3})/, "$1-$2");
+        if (numbers.length > 8) return numbers.slice(0, 5) + "-" + numbers.slice(5, 8) + numbers.slice(8);
+    }
+
 
     return (
         <div className={`font-sans min-h-screen px-4 py-6 ${bgMain}`}>
