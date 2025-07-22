@@ -126,6 +126,13 @@
   -webkit-text-fill-color: transparent;
 }
 
+.gradient-title {
+  background: linear-gradient(to right, #F1099E, #D1008F, #A000F0);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
 
 
 /* client/src/styles/globals.css */

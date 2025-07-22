@@ -3,7 +3,7 @@
     "client/src/**/*",
     "shared/**/*",
     "server/**/*",
-    "client/public/videos/categories.ts"
+    "client/src/categories.ts"
   ],
   "exclude": [
     "node_modules",

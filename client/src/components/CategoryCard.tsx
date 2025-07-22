@@ -23,8 +23,8 @@ export const CategoryCard = ({ category }: CategoryCardProps) => {
           />
           <div className="absolute inset-0 bg-black/20 group-hover:bg-black/30 transition-colors duration-300"></div>
           <div className="absolute bottom-4 left-4 text-white">
-            <h3 className="text-lg font-semibold">{category.name}</h3>
-            <p className="text-sm opacity-90">{category.products.length} produtos</p>
+            <h3 className="text-lg font-semibold gradient-title">{category.name}</h3>
+            <p className="text-sm opacity-90 gradient-title">{category.products.length} produtos</p>
           </div>
         </div>
       </div>

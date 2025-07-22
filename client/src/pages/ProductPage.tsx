@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useRoute } from 'wouter';
-import { getProductById } from '../../public/videos/categories';
+import { getProductById } from '../categories';
 import { useCart } from '../context/CartContext';
 import { Button } from '../components/ui/button';
 import { Swiper, SwiperSlide } from 'swiper/react';

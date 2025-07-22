@@ -47,7 +47,7 @@ export const ProductCard = ({ product, showAddToCart = false }: ProductCardProps
           )}
         </div>
         <div className="p-4">
-          <h3 className="font-semibold mb-2 text-gray-900 dark:text-white">{product.name}</h3>
+          <h3 className="font-semibold mb-2 text-gray-900 dark:text-white gradient-title">{product.name}</h3>
           {product.description && (
             <p className="text-sm text-gray-600 dark:text-gray-400 mb-3 line-clamp-2">
               {product.description}
@@ -62,8 +62,8 @@ export const ProductCard = ({ product, showAddToCart = false }: ProductCardProps
                 onClick={handleAddToCart}
                 size="sm"
                 className={`transition-colors text-white ${isAdding
-                    ? 'bg-softGreen hover:bg-softGreenHover'
-                    : 'bg-clientPink hover:bg-clientPinkHover'
+                  ? 'bg-softGreen hover:bg-softGreenHover'
+                  : 'bg-clientPink hover:bg-clientPinkHover'
                   }`}
               >
                 {isAdding ? 'Adicionado!' : 'Adicionar'}

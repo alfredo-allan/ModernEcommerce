@@ -1,6 +1,6 @@
 import { CategoryCard } from '../components/CategoryCard';
 import { ProductCarousel } from '../components/ProductCarousel';
-import { categories } from '../../public/videos/categories';
+import { categories } from '../categories';
 
 export const HomePage = () => {
   return (

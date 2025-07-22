@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { ProductCard } from './ProductCard';
-import { categories } from '../../public/videos/categories';
+import { categories } from '../categories';
 import type { Product } from '../types';
 
 function shuffleArray<T>(array: T[]): T[] {
