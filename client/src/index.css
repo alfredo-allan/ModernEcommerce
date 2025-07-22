@@ -120,11 +120,13 @@
 }
 
 .gradient-text {
-  background: linear-gradient(to right, hsl(217, 91%, 60%), hsl(272, 83%, 53%));
+  background: linear-gradient(to right, #F1099E, #D1008F, #A000F0);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
+
 
 /* client/src/styles/globals.css */
 .input {

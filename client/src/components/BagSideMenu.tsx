@@ -22,7 +22,7 @@ export const BagSideMenu = () => {
         <div className="flex flex-col h-full">
           {/* Header */}
           <div className="font-sans flex items-center justify-between p-6 border-b border-gray-200 dark:border-gray-700">
-            <h2 className="font-sans text-lg font-semibold text-gray-900 dark:text-white">Sua Sacola</h2>
+            <h2 className="font-sans text-lg font-semibold text-clientPink dark:text-clientPink">Sua Sacola</h2>
             <Button
               variant="ghost"
               size="icon"
@@ -37,7 +37,7 @@ export const BagSideMenu = () => {
           <div className="font-sans flex-1 overflow-y-auto p-6 space-y-4">
             {items.length === 0 ? (
               <div className="text-center py-12">
-                <p className="text-gray-500 dark:text-gray-400">Sua sacola está vazia</p>
+                <p className="font-sans text-gray-500 dark:text-gray-400">Sua sacola está vazia</p>
               </div>
             ) : (
               items.map((item) => (
@@ -51,9 +51,9 @@ export const BagSideMenu = () => {
                     className="w-16 h-16 rounded-lg object-cover"
                   />
                   <div className="flex-1">
-                    <h3 className="font-medium text-sm text-gray-900 dark:text-white">{item.name}</h3>
+                    <h3 className="font-medium text-sm text-clientPink dark:text-clientPink">{item.name}</h3>
                     <p className="text-xs text-gray-500 dark:text-gray-400">Tamanho: {item.size}</p>
-                    <p className="text-sm font-semibold text-blue-500">
+                    <p className="text-sm font-semibold text-clientPink">
                       R$ {item.price.toFixed(2).replace('.', ',')}
                     </p>
                   </div>
@@ -96,10 +96,10 @@ export const BagSideMenu = () => {
             <div className="font-sans border-t border-gray-200 dark:border-gray-700 p-6 space-y-4">
               <div className="font-sans flex justify-between text-lg font-semibold text-gray-900 dark:text-white">
                 <span>Total:</span>
-                <span className="text-blue-500">R$ {totalPrice.toFixed(2).replace('.', ',')}</span>
+                <span className="text-clientPink font-semibold">R$ {totalPrice.toFixed(2).replace('.', ',')}</span>
               </div>
               <Button
-                className="font-sans w-full bg-blue-500 hover:bg-blue-600 text-white font-medium py-3"
+                className="font-sans w-full bg-clientPink hover:bg-clientPinkHover text-white font-medium py-3"
                 onClick={handleCheckoutNavigate} // navegação adicionada aqui
               >
                 Finalizar Compra

@@ -54,20 +54,21 @@ export const ProductCard = ({ product, showAddToCart = false }: ProductCardProps
             </p>
           )}
           <div className="flex items-center justify-between">
-            <span className="text-lg font-bold text-blue-500">
+            <span className="text-lg font-bold text-clientPink">
               R$ {product.price.toFixed(2).replace('.', ',')}
             </span>
             {showAddToCart && (
               <Button
                 onClick={handleAddToCart}
                 size="sm"
-                className={`transition-colors ${isAdding
-                  ? 'bg-green-500 hover:bg-green-600'
-                  : 'bg-blue-500 hover:bg-blue-600'
+                className={`transition-colors text-white ${isAdding
+                    ? 'bg-softGreen hover:bg-softGreenHover'
+                    : 'bg-clientPink hover:bg-clientPinkHover'
                   }`}
               >
                 {isAdding ? 'Adicionado!' : 'Adicionar'}
               </Button>
+
             )}
           </div>
         </div>

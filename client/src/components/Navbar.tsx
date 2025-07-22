@@ -3,7 +3,7 @@ import { ShoppingBag, Menu, User } from 'lucide-react';
 import { ThemeToggle } from './ThemeToggle';
 import { useCart } from '../context/CartContext';
 import { useAuth } from '../context/AuthContext'; // 👈 novo
-import { categories } from '../data/categories';
+import { categories } from '../../public/videos/categories';
 import { Button } from './ui/button';
 import { Badge } from './ui/badge';
 
@@ -18,9 +18,12 @@ export const Navbar = () => {
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <Link href="/">
-            <h1 className="font-sans text-1xl font-bold text-blue-500 hover:text-blue-600 transition-colors cursor-pointer">
-              CEREJA DOCE
-            </h1>
+            <img
+              src="img/cereja-doce-logo.png"
+              alt="Cereja Doce Moda"
+              className="h-12 md:h-16 object-contain"
+            />
+
           </Link>
 
           {/* Navigation Links */}
@@ -30,13 +33,14 @@ export const Navbar = () => {
                 <Link
                   key={category.slug}
                   href={`/${category.slug}`}
-                  className={`px-3 py-2 text-sm font-medium transition-colors ${location === `/${category.slug}`
-                      ? 'text-blue-500 dark:text-blue-400'
-                      : 'text-gray-700 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400'
+                  className={`px-3 py-2 text-sm md:text-base font-medium transition-colors ${location === `/${category.slug}`
+                    ? 'text-clientPink'
+                    : 'text-gray-700 dark:text-gray-300 hover:text-clientPinkHover'
                     }`}
                 >
                   {category.name}
                 </Link>
+
               ))}
             </div>
           </div>
@@ -62,7 +66,7 @@ export const Navbar = () => {
               {totalItems > 0 && (
                 <Badge
                   variant="destructive"
-                  className="absolute -top-1 -right-1 h-5 w-5 flex items-center justify-center p-0 text-xs bg-blue-500 hover:bg-blue-600"
+                  className="absolute -top-1 -right-1 h-5 w-5 flex items-center justify-center p-0 text-xs bg-clientPink hover:clientPinkHover"
                 >
                   {totalItems}
                 </Badge>
@@ -75,6 +79,6 @@ export const Navbar = () => {
           </div>
         </div>
       </div>
-    </nav>
+    </nav >
   );
 };

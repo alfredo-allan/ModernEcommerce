@@ -1,6 +1,6 @@
 import { useRoute } from 'wouter';
 import { ProductCard } from '../components/ProductCard';
-import { getCategoryBySlug } from '../data/categories';
+import { getCategoryBySlug } from '../../public/videos/categories';
 
 export const CategoryPage = () => {
   const [, params] = useRoute('/:category');

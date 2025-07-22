@@ -12,19 +12,19 @@ export const Footer = () => {
             <div className="space-y-2 text-gray-600 dark:text-gray-400">
               <p className="flex items-center">
                 <MapPin className="h-4 w-4 mr-2" />
-                Rua das Flores, 123 - Centro
+                Rua silvia, 978 - Olimpico
               </p>
               <p className="flex items-center">
                 <span className="w-4 mr-2"></span>
-                São Paulo, SP - 01234-567
+                São Caetano, SP - 09571-300
               </p>
               <p className="flex items-center">
                 <Phone className="h-4 w-4 mr-2" />
-                (11) 9999-9999
+                (11) 97623-9695
               </p>
               <p className="flex items-center">
                 <Mail className="h-4 w-4 mr-2" />
-                contato@store.com
+                cerejadoce.fit@gmail.com
               </p>
             </div>
           </div>
@@ -59,17 +59,20 @@ export const Footer = () => {
                 <Facebook className="h-25 w-25" />
               </a>
               <a
-                href="#"
+                href="https://www.instagram.com/cerejadoce.fit?igsh=MTF1ZHNtcWd1NTFlcQ=="
                 className="w-10 h-10 bg-gradient-to-br from-purple-600 to-pink-500 text-white rounded-full flex items-center justify-center hover:scale-110 hover:shadow-lg transition-all duration-300"
               >
-                <Instagram className="h-25 w-25" />
+                <Instagram className="h-30 w-30" />
               </a>
               <a
-                href="#"
+                href="https://api.whatsapp.com/send?phone=5511976239695&text=Ol%C3%A1%20Doce%20Cereja%20moda%21%20%F0%9F%8D%92"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-10 h-10 bg-green-500 text-white rounded-full flex items-center justify-center hover:bg-green-600 hover:scale-110 transition-all duration-300"
               >
-                <img src={Watsapp} className="h-23 w-23" />
+                <img src={Watsapp} alt="WhatsApp" className="h-6 w-6" />
               </a>
+
             </div>
           </div>
         </div>

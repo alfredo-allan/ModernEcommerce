@@ -217,7 +217,7 @@ const CheckoutPage = () => {
                                         <img src={item.image} alt={item.name} className="w-16 h-16 rounded object-cover" />
                                     )}
                                     <div>
-                                        <p className="font-semibold">{item.name}</p>
+                                        <p className="font-semibold text-clientPink">{item.name}</p>
                                         <p className="text-sm">R$ {(item.price || 0).toFixed(2)}</p>
                                         <p className="text-xs text-muted-foreground">Tamanho: {item.size}</p>
                                     </div>
@@ -250,10 +250,13 @@ const CheckoutPage = () => {
                     <button
                         onClick={handleCheckout}
                         disabled={isLoadingCheckout || items.length === 0}
-                        className={`${btnPrimary} w-full py-2 rounded-md transition-colors`}
+                        className="w-full py-2 rounded-md transition-colors text-white 
+             bg-[#F1099E] hover:bg-[#C10786] 
+             disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                         {isLoadingCheckout ? "Processando..." : "Concluir Compra"}
                     </button>
+
                 </div>
             </div>
 

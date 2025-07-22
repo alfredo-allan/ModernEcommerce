@@ -1,4 +1,4 @@
-import { Category, Product } from '../types';
+import { Category, Product } from '../../src/types';
 
 export const categories: Category[] = [
   {
@@ -147,6 +147,7 @@ export const categories: Category[] = [
         images: [
           "/img/kitlegginggreen.jpeg",
           "/img/kitlegginggreen_1.jpeg",
+
         ],
         description: "KIT CONJUNTO LEGGING + TOP Para um look atraente e versátil.E lindoooo Calça Legging + Top, Você terá toda a liberdade dos movimentos. conta com cós alto para melhor conforto e ajusta perfeitamente ao corpo assim como segunda pele. Ótimo para academia. Conforto e Estilo: Conjunto fitness composto por legging e top com design moderno e confortável. Efeito Levanta Bumbum: A legging possui modelagem especial que realça as curvas. Material Não Transparente: Fabricado com tecidos de alta qualidade que garantem segurança e conforto durante os treinos. Ideal para Academia e Lazer: Perfeito para práticas esportivas ou momentos casuais. Ajuste Perfeito: Cintura alta e elástica que proporciona melhor sustentação."
       },
@@ -204,6 +205,62 @@ export const categories: Category[] = [
           "/img/kitlegginpink_1.jpeg",
         ],
         description: "KIT CONJUNTO LEGGING + TOP Para um look atraente e versátil.E lindoooo Calça Legging + Top, Você terá toda a liberdade dos movimentos. conta com cós alto para melhor conforto e ajusta perfeitamente ao corpo assim como segunda pele. Ótimo para academia. Conforto e Estilo: Conjunto fitness composto por legging e top com design moderno e confortável. Efeito Levanta Bumbum: A legging possui modelagem especial que realça as curvas. Material Não Transparente: Fabricado com tecidos de alta qualidade que garantem segurança e conforto durante os treinos. Ideal para Academia e Lazer: Perfeito para práticas esportivas ou momentos casuais. Ajuste Perfeito: Cintura alta e elástica que proporciona melhor sustentação."
+      },
+
+    ]
+  },
+  {
+    slug: "Calça Pantalona",
+    name: "Calça pantalona",
+    seoTitle: "Calça Pantalona",
+    description: "Calça Pantalona Feminino Cintura Alta Com Elástico Em Tecido Duna",
+    products: [
+      {
+        id: "12",
+        name: "Calça Pantalona",
+        price: 39.90,
+        weight: 0.38, // em kg = 380g
+        images: [
+          "/img/calça_pantalona_1.jpeg",
+          "/img/calça_pantalona_2.jpeg",
+          "/img/calça_pantalona_3.jpeg",
+
+        ],
+        videos: [
+          "/videos/calça_pantalona_preta.mp4" // caminho do seu vídeo
+        ],
+        description: "Calça pantalona feminino cintura alta com elástico em tecido Duna. A calça duna pantalona é conhecida por ser uma ótima opção para o seu dia a dia, sendo uma peça coringa para complementar seu guada roupa. -ENVIO IMEDIATO -PRODUTO EXCLUSIVO Descrição do produto - Gênero: Feminino - Modelo: Calça Pantalona - Material Principal: Duna - Bolsos: NAO POSSUI - Fechamento: Cintura elástica com cordão",
+      },
+      {
+        id: "p20",
+        name: "Calça Pantalona",
+        price: 39.90,
+        weight: 0.38, // em kg = 380g
+        images: [
+          "/img/calça_pantalona_4.jpeg",
+          "/img/calça_pantalona_8.jpeg",
+          "/img/calça_pantalona_9.jpeg",
+        ],
+        videos: [
+          "/videos/calça_pantalona_amarela.mp4" // caminho do seu vídeo
+        ],
+        description: "Calça pantalona feminino cintura alta com elástico em tecido Duna. A calça duna pantalona é conhecida por ser uma ótima opção para o seu dia a dia, sendo uma peça coringa para complementar seu guada roupa. -ENVIO IMEDIATO -PRODUTO EXCLUSIVO Descrição do produto - Gênero: Feminino - Modelo: Calça Pantalona - Material Principal: Duna - Bolsos: NAO POSSUI - Fechamento: Cintura elástica com cordão",
+      },
+      {
+        id: "p21",
+        name: "Calça Pantalona",
+        price: 39.90,
+        weight: 0.38, // em kg = 380g
+        images: [
+          "/img/calça_pantalona_7.jpeg",
+          "/img/calça_pantalona_5.jpeg",
+          "/img/calça_pantalona_6.jpeg",
+
+        ],
+        videos: [
+          "/videos/calça_pantalona_verde.mp4" // caminho do seu vídeo
+        ],
+        description: "Calça pantalona feminino cintura alta com elástico em tecido Duna. A calça duna pantalona é conhecida por ser uma ótima opção para o seu dia a dia, sendo uma peça coringa para complementar seu guada roupa. -ENVIO IMEDIATO -PRODUTO EXCLUSIVO Descrição do produto - Gênero: Feminino - Modelo: Calça Pantalona - Material Principal: Duna - Bolsos: NAO POSSUI - Fechamento: Cintura elástica com cordão",
       },
 
     ]

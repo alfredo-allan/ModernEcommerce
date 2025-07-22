@@ -13,6 +13,10 @@ export default {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
+        clientPink: '#F1099E',
+        clientPinkHover: '#C10786', // versão mais escura para hover
+        softGreen: '#3DC47E',
+        softGreenHover: '#33A76C',
         card: {
           DEFAULT: "var(--card)",
           foreground: "var(--card-foreground)",

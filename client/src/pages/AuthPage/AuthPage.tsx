@@ -330,8 +330,7 @@ export const AuthPage = () => {
                         <button
                             type="button"
                             onClick={toggleShowPassword}
-                            className="absolute right-2 top-[38px] text-gray-500 hover:text-gray-700"
-                        >
+                            className="absolute right-2 top-[34px] md:top-[38px] text-gray-500 hover:text-gray-700">
                             {showPassword ? '🙈' : '👁️'}
                         </button>
                     </div>
@@ -340,7 +339,7 @@ export const AuthPage = () => {
                     <button
                         type="submit"
                         disabled={loading}
-                        className="w-full bg-primary text-primary-foreground py-2 rounded-md hover:bg-primary/90 transition-colors"
+                        className="w-full bg-clientPink text-primary-foreground py-2 rounded-md hover:bg-clientPinkHover transition-colors"
                     >
                         {loading ? 'Aguarde...' : isLogin ? 'Entrar' : 'Cadastrar'}
                     </button>
