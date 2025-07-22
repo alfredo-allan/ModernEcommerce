@@ -260,7 +260,7 @@ export const categories: Category[] = [
         videos: [
           "/videos/calça_pantalona_verde.mp4" // caminho do seu vídeo
         ],
-        description: "Tem 320º de gramatura é por isso NÃO tem transparência nenhuma. Os produtos são novos? Sim todos os produtos a venda são novos. Tem a pronta entrega? Sim todos os produtos anunciados estão na nossa loja, disponíveis para pronta entrega. Tamanhos / Tabela de Medidas M 36/38 G 40/4 GG 44 Temos as cores: - BEGE      - PRETO MARSALA PINK ROXO Você pode escolher os tamanhos a vontade, no campo de mensagens da sua compra. Fique tranquila SEMPRE enviamos as leggings diferentes com cores bem vivas e alegres que vão te deixar com muito estilo. Pode comprar as suas leggings tranquila, tenho certeza que você vai gostar. Fique à vontade para utilizar o campo de mensagens será um prazer atender você. Informações Importantes: - NÃO DA BOLINHA, PODE LAVAR NA MAQUINA. - MUITO CONFORTÁVEL E QUENTINHA - VESTE SUPER BEM - CÓS DE 8 CM.DE ALTURA - PRODUTO DE QUALIDADE - TECIDO COM ÓTIMO TOQUE - SUPLEX POR DENTRO E POR FORA."
+        description: "Calça pantalona feminino cintura alta com elástico em tecido Duna. A calça duna pantalona é conhecida por ser uma ótima opção para o seu dia a dia, sendo uma peça coringa para complementar seu guada roupa. -ENVIO IMEDIATO -PRODUTO EXCLUSIVO Descrição do produto - Gênero: Feminino - Modelo: Calça Pantalona - Material Principal: Duna - Bolsos: NAO POSSUI - Fechamento: Cintura elástica com cordão",
       },
 
     ]

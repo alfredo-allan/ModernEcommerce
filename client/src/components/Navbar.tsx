@@ -54,22 +54,20 @@ export const Navbar = () => {
               </Button>
             </Link>
 
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={toggleCart}
-              className="relative h-9 w-9 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
-            >
-              <ShoppingBag className="h-4 w-4 text-gray-600 dark:text-gray-400" />
-              {totalItems > 0 && (
-                <Badge
-                  variant="destructive"
-                  className="absolute -top-1 -right-1 h-5 w-5 flex items-center justify-center p-0 text-xs bg-clientPink hover:bg-clientPinkHover"
-                >
-                  {totalItems}
-                </Badge>
-              )}
+            <Button variant="ghost" size="sm" className="text-sm font-medium whitespace-nowrap">
+              <User className="h-4 w-4 mr-2" />
+              {loggedInUser ? (
+                <>
+                  <span className="md:hidden">
+                    {loggedInUser.nome?.split(' ')[0] ?? ''}
+                  </span>
+                  <span className="hidden md:inline">
+                    {loggedInUser.nome}
+                  </span>
+                </>
+              ) : 'Login'}
             </Button>
+
 
             {/* Menu lateral mobile */}
             <div className="md:hidden">

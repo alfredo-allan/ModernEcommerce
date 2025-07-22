@@ -7,9 +7,11 @@ export const HomePage = () => {
     <main className="font-sans max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       {/* Hero Section */}
       <section className="text-center mb-16">
-        <h1 className="font-sans text-4xl md:text-6xl font-bold mb-6 gradient-text">
+        <h1 className="font-sans text-4xl md:text-6xl font-bold mb-6 gradient-text leading-[1.6] md:leading-[1.8]">
           Cereja Doce Moda
         </h1>
+
+
         <p className="font-sans text-xl text-gray-600 dark:text-gray-400 mb-8 max-w-2xl mx-auto">
           Descubra nossa coleção de roupas e acessórios únicos
         </p>
