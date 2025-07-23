@@ -130,6 +130,18 @@ export const categories: Category[] = [
 
         ],
         description: "Short Academia Feminino – Cintura Alta | Modela & Levanta Bumbum\nConforto, estilo e performance para treinos intensos ou look fitness casual. Tecido leve e com elastano, ajusta-se ao corpo sem apertar, com cintura alta que modela a silhueta e ajuda na postura.\n\nDestaques:\nTecido com elastano para elasticidade e conforto\nCintura alta que sustenta o abdômen\nEfeito levanta bumbum\nTamanho único (36 ao 42)\nDesign moderno e versátil\nIdeal para academia, caminhada e uso casual\n\nPor que escolher?\nLiberdade e conforto para qualquer treino\nModelagem que valoriza o corpo\nDiversas cores para seu estilo\nEncaixe perfeito sem desconforto\nEnvio rápido e seguro"
+      },
+      {
+        id: "p35", //aqui
+        name: "Short Academia fitness Feminino Beje",
+        price: 89.90,
+        weight: 0.15, // em kg = 150g
+        images: [
+          "/img/nudeshorts.jpeg",
+          "/img/nudeshorts_1.jpeg",
+
+        ],
+        description: "Short Academia Feminino – Cintura Alta | Modela & Levanta Bumbum\nConforto, estilo e performance para treinos intensos ou look fitness casual. Tecido leve e com elastano, ajusta-se ao corpo sem apertar, com cintura alta que modela a silhueta e ajuda na postura.\n\nDestaques:\nTecido com elastano para elasticidade e conforto\nCintura alta que sustenta o abdômen\nEfeito levanta bumbum\nTamanho único (36 ao 42)\nDesign moderno e versátil\nIdeal para academia, caminhada e uso casual\n\nPor que escolher?\nLiberdade e conforto para qualquer treino\nModelagem que valoriza o corpo\nDiversas cores para seu estilo\nEncaixe perfeito sem desconforto\nEnvio rápido e seguro"
       }
     ]
   },
