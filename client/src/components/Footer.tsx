@@ -1,6 +1,8 @@
 import { Facebook, Instagram, Phone, Mail, MapPin } from 'lucide-react';
 import { FaWhatsapp } from 'react-icons/fa';
 import Watsapp from "../../public/img/social.png";
+import { Link } from "wouter";
+
 export const Footer = () => {
   return (
     <footer className="font-sans bg-gray-50 dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 mt-20">
@@ -33,20 +35,36 @@ export const Footer = () => {
           <div>
             <h3 className="text-lg font-semibold mb-4 text-gray-900 dark:text-white">Links Rápidos</h3>
             <div className="space-y-2">
-              <a href="#" className="block text-gray-600 dark:text-gray-400 hover:text-blue-500 dark:hover:text-blue-400 transition-colors">
+              <Link
+                href="/about-us"
+                className="block text-gray-600 dark:text-gray-400 hover:text-blue-500 dark:hover:text-blue-400 transition-colors"
+              >
                 Sobre Nós
-              </a>
-              <a href="#" className="block text-gray-600 dark:text-gray-400 hover:text-blue-500 dark:hover:text-blue-400 transition-colors">
+              </Link>
+              <Link
+                href="/exchange-policy"
+                className="block text-gray-600 dark:text-gray-400 hover:text-blue-500 dark:hover:text-blue-400 transition-colors"
+              >
                 Políticas de Troca
-              </a>
-              <a href="#" className="block text-gray-600 dark:text-gray-400 hover:text-blue-500 dark:hover:text-blue-400 transition-colors">
+              </Link>
+
+              <Link
+                href="/shipping-and-delivery"
+                className="block text-gray-600 dark:text-gray-400 hover:text-blue-500 dark:hover:text-blue-400 transition-colors"
+              >
                 Frete e Entrega
-              </a>
-              <a href="#" className="block text-gray-600 dark:text-gray-400 hover:text-blue-500 dark:hover:text-blue-400 transition-colors">
+              </Link>
+
+              <Link
+                href="/contact"
+                className="block text-gray-600 dark:text-gray-400 hover:text-blue-500 dark:hover:text-blue-400 transition-colors"
+              >
                 Contato
-              </a>
+              </Link>
+
             </div>
           </div>
+
 
           {/* Social Media */}
           <div>

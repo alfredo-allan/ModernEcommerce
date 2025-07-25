@@ -17,6 +17,11 @@ import { ProductPage } from "./pages/ProductPage";
 import NotFound from "@/pages/not-found";
 import { AuthPage } from "./pages/AuthPage/AuthPage";
 import CheckoutPage from "./pages/CheckoutPage/CheckoutPage"; // importe sua página
+import AboutUs from "./pages/AboutUs";
+import ExchangePolicy from "./pages/ExchangePolicy";
+import ShippingAndDelivery from "./pages/ShippingAndDelivery";
+import Contact from "./pages/Contact";
+
 
 function Router() {
   return (
@@ -25,6 +30,10 @@ function Router() {
       <Route path="/auth" component={AuthPage} />
       <Route path="/checkout" component={CheckoutPage} /> {/* Rota do Checkout */}
       <Route path="/produto/:id" component={ProductPage} />
+      <Route path="/about-us" component={AboutUs} />
+      <Route path="/exchange-policy" component={ExchangePolicy} />
+      <Route path="/shipping-and-delivery" component={ShippingAndDelivery} />
+      <Route path="/contact" component={Contact} />
       <Route path="/:category" component={CategoryPage} />
       <Route component={NotFound} />
     </Switch>

@@ -146,7 +146,7 @@ export const categories: Category[] = [
     ]
   },
   {
-    slug: "conjunto legging",
+    slug: "kitlegging+top",
     name: "Kit Legging + Top",
     seoTitle: "Kit Legging",
     description: "Acessórios para completar seu look",
@@ -222,7 +222,7 @@ export const categories: Category[] = [
     ]
   },
   {
-    slug: "Calça Pantalona",
+    slug: "CalçaPantalona",
     name: "Calça Pantalona",
     seoTitle: "Calça Pantalona",
     description: "Calça Pantalona Feminino Cintura Alta Com Elástico Em Tecido Duna",
@@ -279,7 +279,7 @@ export const categories: Category[] = [
   },
 
   {
-    slug: "Legging 3D A Melhor Qualidade",
+    slug: "Legging3D",
     name: "Legging 3D",
     seoTitle: "Legging 3D",
     description: "320º De Gramatura Não Tem Transparência",
@@ -361,7 +361,7 @@ export const categories: Category[] = [
 
 
   {
-    slug: "Empina Bumbum",
+    slug: "EmpinaBumbum",
     name: "Empina Bumbum",
     seoTitle: "Empina Bumbum Tamanho Unico Veste Ate O 40",
     description: "Empina Bumbum Tamanho Unico Veste Ate O 40",
@@ -427,7 +427,7 @@ export const categories: Category[] = [
   },
 
   {
-    slug: "Macaquinho Tyedye",
+    slug: "MacaquinhoTyedye",
     name: "Macaquinho Tyedye",
     seoTitle: "Macaquinho Tyedye",
     description: "Estampa Tie Dye digital vibrante que combina estilo e autenticidade.",
@@ -505,7 +505,7 @@ export const categories: Category[] = [
   },
   /* Conjunto Empina Bumbum Yoga */
   {
-    slug: "Conjunto Empina Bumbum Yoga",
+    slug: "ConjuntoEmpinaBumbumYoga",
     name: "Top + Shorts",
     seoTitle: "Conjunto Empina Bumbum Yoga",
     description: "Conjunto fitness empina bumbum  yoga importado de alta qualidade",
