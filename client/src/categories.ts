@@ -10,7 +10,7 @@ export const categories: Category[] = [
       {
         id: "p1",
         name: "Macaquinho Rosa",
-        price: 49.90,
+        price: 78.00,
         weight: 0.25, // em kg = 250g
         images: [
           "/img/littlemonkey_category.jpeg",
@@ -24,7 +24,7 @@ export const categories: Category[] = [
       {
         id: "p2",
         name: "Macaquinho Azul",
-        price: 69.90,
+        price: 78.00,
         weight: 0.25, // em kg = 250g
         images: [
           "/img/littlebluemonkey.jpeg",
@@ -38,7 +38,7 @@ export const categories: Category[] = [
       {
         id: "p3",
         name: "Macaquinho Verde",
-        price: 59.90,
+        price: 78.00,
         weight: 0.25, // em kg = 250g
         images: [
           "/img/littlegreenmonkey.jpeg",
@@ -52,7 +52,7 @@ export const categories: Category[] = [
       {
         id: "p4",
         name: "Macaquinho Rosa",
-        price: 49.90,
+        price: 78.00,
         weight: 0.25, // em kg = 250g
         images: [
           "/img/littlemonkey_1.jpeg",
@@ -75,7 +75,7 @@ export const categories: Category[] = [
       {
         id: "p5",
         name: "Short Academia fitness Feminino Roxo",
-        price: 129.90,
+        price: 19.99,
         weight: 0.15, // em kg = 150g
         images: [
           "/img/blueshorts.jpeg",
@@ -86,7 +86,7 @@ export const categories: Category[] = [
       {
         id: "p6",
         name: "Short Academia fitness Feminino Cinza",
-        price: 109.90,
+        price: 19.99,
         weight: 0.15, // em kg = 150g
         images: [
           "/img/grayshorts.jpeg",
@@ -99,7 +99,7 @@ export const categories: Category[] = [
       {
         id: "p7",
         name: "Short Academia fitness Feminino Verde",
-        price: 89.90,
+        price: 19.99,
         weight: 0.15, // em kg = 150g
         images: [
           "/img/greenshorts_1.jpeg",
@@ -111,7 +111,7 @@ export const categories: Category[] = [
       {
         id: "p8",
         name: "Short Academia fitness Feminino Cinza Claro",
-        price: 89.90,
+        price: 19.99,
         weight: 0.15, // em kg = 150g
         images: [
           "/img/lightgrayshorts.jpeg",
@@ -122,7 +122,7 @@ export const categories: Category[] = [
       }, {
         id: "p9",
         name: "Short Academia fitness Feminino Vermelho",
-        price: 89.90,
+        price: 19.99,
         weight: 0.15, // em kg = 150g
         images: [
           "/img/redshorts.jpeg",
@@ -134,7 +134,7 @@ export const categories: Category[] = [
       {
         id: "p35", //aqui
         name: "Short Academia fitness Feminino Beje",
-        price: 89.90,
+        price: 19.99,
         weight: 0.15, // em kg = 150g
         images: [
           "/img/nudeshorts.jpeg",
@@ -154,7 +154,7 @@ export const categories: Category[] = [
       {
         id: "p10",
         name: "Kit Legging + Top Verde",
-        price: 39.90,
+        price: 55.00,
         weight: 0.38, // em kg = 380g
         images: [
           "/img/kitlegginggreen.jpeg",
@@ -166,7 +166,7 @@ export const categories: Category[] = [
       {
         id: "p11",
         name: "Kit Legging + Top Vermelho",
-        price: 39.90,
+        price: 55.00,
         weight: 0.38, // em kg = 380g
         images: [
           "/img/kitleggingred.jpeg",
@@ -177,7 +177,7 @@ export const categories: Category[] = [
       {
         id: "p12",
         name: "Kit Legging + Top Cinza Claro",
-        price: 39.90,
+        price: 55.00,
         weight: 0.38, // em kg = 380g
         images: [
           "/img/kitleggingray.jpeg",
@@ -188,7 +188,7 @@ export const categories: Category[] = [
       {
         id: "p13",
         name: "Kit Legging + Top Roxo",
-        price: 39.90,
+        price: 55.00,
         weight: 0.38, // em kg = 380g
         images: [
           "/img/kitlegginpurple.jpeg",
@@ -199,7 +199,7 @@ export const categories: Category[] = [
       {
         id: "p14",
         name: "Kit Legging + Top Cinza Escuro",
-        price: 39.90,
+        price: 55.00,
         weight: 0.38, // em kg = 380g
         images: [
           "/img/kitleggingray_2.jpeg",
@@ -211,7 +211,7 @@ export const categories: Category[] = [
         id: "p15",
         name: "Kit Legging + Top Rosa",
         weight: 0.38, // em kg = 380g
-        price: 39.90,
+        price: 55.00,
         images: [
           "/img/kitlegginpink.jpeg",
           "/img/kitlegginpink_1.jpeg",
@@ -230,7 +230,7 @@ export const categories: Category[] = [
       {
         id: "p16",
         name: "Calça Pantalona Preta",
-        price: 39.90,
+        price: 39.99,
         weight: 0.38, // em kg = 380g
         images: [
           "/img/calça_pantalona_1.jpeg",
@@ -246,7 +246,7 @@ export const categories: Category[] = [
       {
         id: "p17",
         name: "Calça Pantalona Amarela",
-        price: 39.90,
+        price: 39.99,
         weight: 0.38, // em kg = 380g
         images: [
           "/img/calça_pantalona_4.jpeg",
@@ -261,7 +261,7 @@ export const categories: Category[] = [
       {
         id: "p18",
         name: "Calça Pantalona Verde",
-        price: 39.90,
+        price: 39.99,
         weight: 0.38, // em kg = 380g
         images: [
           "/img/calça_pantalona_7.jpeg",
@@ -287,7 +287,7 @@ export const categories: Category[] = [
       {
         id: "p19",
         name: "Legging 3D Beje",
-        price: 39.90,
+        price: 39.99,
         weight: 0.38, // em kg = 380g
         images: [
           "/img/LEGGING_3D_marron.webp",
@@ -301,7 +301,7 @@ export const categories: Category[] = [
       {
         id: "p20",
         name: "Legging 3D Preta",
-        price: 39.90,
+        price: 39.99,
         weight: 0.38, // em kg = 380g
         images: [
           "/img/LEGGING_3D_preta.jpeg",
@@ -316,7 +316,7 @@ export const categories: Category[] = [
       {
         id: "p21",
         name: "Legging 3D Vermelha",
-        price: 39.90,
+        price: 39.99,
         weight: 0.38, // em kg = 380g
         images: [
           "/img/LEGGING_3D_vermelha.jpeg",
@@ -330,7 +330,7 @@ export const categories: Category[] = [
       {
         id: "p22",
         name: "Legging 3D Roxa",
-        price: 39.90,
+        price: 39.99,
         weight: 0.38, // em kg = 380g
         images: [
           "/img/LEGGING_3D_ROXO.jpeg",
@@ -344,7 +344,7 @@ export const categories: Category[] = [
       {
         id: "p23",
         name: "Legging 3D Pink",
-        price: 39.90,
+        price: 39.99,
         weight: 0.38, // em kg = 380g
         images: [
           "/img/LEGGING_3D_PINK.jpeg",
@@ -369,7 +369,7 @@ export const categories: Category[] = [
       {
         id: "p24",
         name: "Empina Bumbum",
-        price: 39.90,
+        price: 35.00,
         weight: 0.38, // em kg = 380g
         images: [
           "/img/EMPINABUMBUM_1.jpeg",
@@ -383,7 +383,7 @@ export const categories: Category[] = [
       {
         id: "p25",
         name: "Empina Bumbum",
-        price: 39.90,
+        price: 35.00,
         weight: 0.38, // em kg = 380g
         images: [
           "/img/EMPINABUMBUM_2.jpeg",
@@ -397,7 +397,7 @@ export const categories: Category[] = [
       {
         id: "p26",
         name: "Empina Bumbum",
-        price: 39.90,
+        price: 35.00,
         weight: 0.38, // em kg = 380g
         images: [
           "/img/EMPINABUMBUM_3.jpeg",
@@ -411,7 +411,7 @@ export const categories: Category[] = [
       {
         id: "p27",
         name: "Empina Bumbum",
-        price: 39.90,
+        price: 35.00,
         weight: 0.38, // em kg = 380g
         images: [
           "/img/EMPINABUMBUM_4.jpeg",
@@ -435,7 +435,7 @@ export const categories: Category[] = [
       {
         id: "p29",
         name: "Macaquinho Tyedye Verde",
-        price: 39.90,
+        price: 79.99,
         weight: 0.38, // em kg = 380g
         images: [
           "/img/MACAQUINHOTYEDYE_1.jpeg",
@@ -452,7 +452,7 @@ export const categories: Category[] = [
       {
         id: "p30",
         name: "Macaquinho Tyedye Rosa",
-        price: 39.90,
+        price: 79.99,
         weight: 0.38, // em kg = 380g
         images: [
           "/img/MACAQUINHOTYEDYE_4.jpeg",
@@ -469,7 +469,7 @@ export const categories: Category[] = [
       {
         id: "p31",
         name: "Macaquinho Tyedye Preto",
-        price: 39.90,
+        price: 79.99,
         weight: 0.38, // em kg = 380g
         images: [
           "/img/MACAQUINHOTYEDYE_7.jpeg",
@@ -485,7 +485,7 @@ export const categories: Category[] = [
       {
         id: "p32",
         name: "Macaquinho Tyedye Cinza",
-        price: 39.90,
+        price: 79.99,
         weight: 0.38, // em kg = 380g
         images: [
           "/img/MACAQUINHOTYEDYE_10.jpeg",
@@ -499,9 +499,100 @@ export const categories: Category[] = [
         description: "Material: 100% Poliamida - Composição: 100% Poliamida - Detalhes: Macaquinho Tie Dye - Tipo de Manga: Alça - Gênero: FemininO - Com bojo - Tamanho P/M G/GG DIFERENCIAIS DO PRODUTO: - Design inovador: Estampa Tie Dye digital vibrante que combina estilo e autenticidade. - Conforto superior: Fabricado em 100% poliamida, oferece suavidade e respirabilidade. - Versatilidade esportiva: Ideal para academia, natação e atividades ao ar livre. - Modelagem favorecedora: Design para uma silhueta mais definida. - Durabilidade assegurada: Material de alta qualidade que mantém a forma e a cor após várias lavagens. SOBRE O PRODUTO: Descubra o conforto e estilo com nosso Macaquinho Tie Dye Sport. Este design exclusivo, perfeccionista em detalhes com as costas estilo regata, valoriza sua silhueta enquanto realiza atividades físicas. É a escolha perfeita para mulheres que buscam conforto, suporte e estilo em uma única peça. PERGUNTAS FREQUENTES: Possui bojo? SIM P: Com qual material é feito o macaquinho? R: É feito 100% em poliamida. P: Este macaquinho é adequado para quais atividades? R: Perfeito para academia, natação e até mesmo para passeios casuais. P: Possui alguma transparência? R: Não, o tecido de poliamida garante zero transparência.P: Qual é o destaque deste design? R: Seu desing modelador. Estampa Tie Dye que são super tendência. POSSUI BOJO"
       },
 
-    ]
-  },
 
+    ]
+
+  },
+  /* Conjunto Empina Bumbum Yoga */
+  {
+    slug: "Conjunto Empina Bumbum Yoga",
+    name: "Top + Shorts",
+    seoTitle: "Conjunto Empina Bumbum Yoga",
+    description: "Conjunto fitness empina bumbum  yoga importado de alta qualidade",
+    products: [
+      {
+        id: "p40",
+        name: "Conjunto Empina Bumbum Yoga Roxo",
+        price: 49.99,
+        weight: 0.38, // em kg = 380g
+        images: [
+          "/img/empinabumbumyoga_azul-1.jpeg",
+          "/img/empinabumbumyoga_azul.jpeg",
+
+
+        ],
+        videos: [
+        ],
+        description: "Conjunto fitness empina bumbum  yoga importado de alta qualidade, com uma tecnologia inovadora respiravel deixando seus treinos muito mais confortaveis TAMANHO UNICO DO 36 AO 42 Pessoas aplicáveis: Feminino Cenários aplicáveis: Corrida, Yoga, Fitness, musculação Função de respirável, absorção de umidade, secagem rápida Tipo de gola redonda: Pescoço redondo Material da linha: Material: algodão e poliester Comprimento da manga/comprimento da manga: estilo curto/manga curta Comprimento da Calça: Shorts Top com bojo Tamanho: Unico serve para todos ate 42 Efeito empina bumbum que modela o corpo.",
+      },
+      {
+        id: "p36",
+        name: "Conjunto Empina Bumbum Yoga Azul Bebe",
+        price: 49.99,
+        weight: 0.38, // em kg = 380g
+        images: [
+          "/img/empinabumbumyoga_azul-bebe-1.jpeg",
+          "/img/empinabumbumyoga_azul-bebe.jpeg",
+
+
+        ],
+        videos: [
+        ],
+        description: "Conjunto fitness empina bumbum  yoga importado de alta qualidade, com uma tecnologia inovadora respiravel deixando seus treinos muito mais confortaveis TAMANHO UNICO DO 36 AO 42 Pessoas aplicáveis: Feminino Cenários aplicáveis: Corrida, Yoga, Fitness, musculação Função de respirável, absorção de umidade, secagem rápida Tipo de gola redonda: Pescoço redondo Material da linha: Material: algodão e poliester Comprimento da manga/comprimento da manga: estilo curto/manga curta Comprimento da Calça: Shorts Top com bojo Tamanho: Unico serve para todos ate 42 Efeito empina bumbum que modela o corpo.",
+      },
+      {
+        id: "p37",
+        name: "Conjunto Empina Bumbum Yoga Cinza",
+        price: 49.99,
+        weight: 0.38, // em kg = 380g
+        images: [
+          "/img/empinabumbumyoga_cinza-1.jpeg",
+          "/img/empinabumbumyoga_cinza.jpeg",
+
+
+        ],
+        videos: [
+        ],
+        description: "Conjunto fitness empina bumbum  yoga importado de alta qualidade, com uma tecnologia inovadora respiravel deixando seus treinos muito mais confortaveis TAMANHO UNICO DO 36 AO 42 Pessoas aplicáveis: Feminino Cenários aplicáveis: Corrida, Yoga, Fitness, musculação Função de respirável, absorção de umidade, secagem rápida Tipo de gola redonda: Pescoço redondo Material da linha: Material: algodão e poliester Comprimento da manga/comprimento da manga: estilo curto/manga curta Comprimento da Calça: Shorts Top com bojo Tamanho: Unico serve para todos ate 42 Efeito empina bumbum que modela o corpo.",
+      },
+      {
+        id: "p38",
+        name: "Conjunto Empina Bumbum Yoga Cinza",
+        price: 49.99,
+        weight: 0.38, // em kg = 380g
+        images: [
+          "/img/empinabumbumyoga_rosa-1.jpeg",
+          "/img/empinabumbumyoga_rosa.jpeg",
+
+
+        ],
+        videos: [
+        ],
+        description: "Conjunto fitness empina bumbum  yoga importado de alta qualidade, com uma tecnologia inovadora respiravel deixando seus treinos muito mais confortaveis TAMANHO UNICO DO 36 AO 42 Pessoas aplicáveis: Feminino Cenários aplicáveis: Corrida, Yoga, Fitness, musculação Função de respirável, absorção de umidade, secagem rápida Tipo de gola redonda: Pescoço redondo Material da linha: Material: algodão e poliester Comprimento da manga/comprimento da manga: estilo curto/manga curta Comprimento da Calça: Shorts Top com bojo Tamanho: Unico serve para todos ate 42 Efeito empina bumbum que modela o corpo.",
+      },
+      {
+        id: "p39",
+        name: "Conjunto Empina Bumbum Yoga Cinza",
+        price: 49.99,
+        weight: 0.38, // em kg = 380g
+        images: [
+          "/img/empinabumbumyoga_vermelho-2.jpeg",
+          "/img/empinabumbumyoga_vermelho-1.jpeg",
+          "/img/empinabumbumyoga_vermelho.jpeg",
+
+
+
+
+        ],
+        videos: [
+        ],
+        description: "Conjunto fitness empina bumbum  yoga importado de alta qualidade, com uma tecnologia inovadora respiravel deixando seus treinos muito mais confortaveis TAMANHO UNICO DO 36 AO 42 Pessoas aplicáveis: Feminino Cenários aplicáveis: Corrida, Yoga, Fitness, musculação Função de respirável, absorção de umidade, secagem rápida Tipo de gola redonda: Pescoço redondo Material da linha: Material: algodão e poliester Comprimento da manga/comprimento da manga: estilo curto/manga curta Comprimento da Calça: Shorts Top com bojo Tamanho: Unico serve para todos ate 42 Efeito empina bumbum que modela o corpo.",
+      },
+
+
+    ]
+
+  },
 
 ];
 
