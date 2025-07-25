@@ -11,7 +11,7 @@ export const categories: Category[] = [
         id: "p1",
         name: "Macaquinho Rosa",
         price: 78.00,
-        weight: 0.25, // em kg = 250g
+        weight: 0.40, // em kg = 250g
         images: [
           "/img/littlemonkey_category.jpeg",
           "/img/littlemonkey_1.jpeg",
@@ -25,7 +25,7 @@ export const categories: Category[] = [
         id: "p2",
         name: "Macaquinho Azul",
         price: 78.00,
-        weight: 0.25, // em kg = 250g
+        weight: 0.40, // em kg = 250g
         images: [
           "/img/littlebluemonkey.jpeg",
           "/img/littlebluemonkey_1.jpeg",
@@ -39,7 +39,7 @@ export const categories: Category[] = [
         id: "p3",
         name: "Macaquinho Verde",
         price: 78.00,
-        weight: 0.25, // em kg = 250g
+        weight: 0.40, // em kg = 250g
         images: [
           "/img/littlegreenmonkey.jpeg",
           "/img/littlegreenmonkey_1.jpeg",
@@ -53,7 +53,7 @@ export const categories: Category[] = [
         id: "p4",
         name: "Macaquinho Rosa",
         price: 78.00,
-        weight: 0.25, // em kg = 250g
+        weight: 0.40, // em kg = 250g
         images: [
           "/img/littlemonkey_1.jpeg",
           "/img/littlemonkey_category.jpeg",
@@ -76,7 +76,7 @@ export const categories: Category[] = [
         id: "p5",
         name: "Short Academia fitness Feminino Roxo",
         price: 19.99,
-        weight: 0.15, // em kg = 150g
+        weight: 0.40, // em kg = 250g
         images: [
           "/img/blueshorts.jpeg",
           "/img/blueshorts_1.jpeg",
@@ -87,7 +87,7 @@ export const categories: Category[] = [
         id: "p6",
         name: "Short Academia fitness Feminino Cinza",
         price: 19.99,
-        weight: 0.15, // em kg = 150g
+        weight: 0.40, // em kg = 250g
         images: [
           "/img/grayshorts.jpeg",
           "/img/grayshorts_1.jpeg",
@@ -100,7 +100,7 @@ export const categories: Category[] = [
         id: "p7",
         name: "Short Academia fitness Feminino Verde",
         price: 19.99,
-        weight: 0.15, // em kg = 150g
+        weight: 0.40, // em kg = 250g
         images: [
           "/img/greenshorts_1.jpeg",
           "/img/greenshorts.jpeg",
@@ -112,7 +112,7 @@ export const categories: Category[] = [
         id: "p8",
         name: "Short Academia fitness Feminino Cinza Claro",
         price: 19.99,
-        weight: 0.15, // em kg = 150g
+        weight: 0.40, // em kg = 250g
         images: [
           "/img/lightgrayshorts.jpeg",
           "/img/lightgrayshorts_1.jpeg"
@@ -123,7 +123,7 @@ export const categories: Category[] = [
         id: "p9",
         name: "Short Academia fitness Feminino Vermelho",
         price: 19.99,
-        weight: 0.15, // em kg = 150g
+        weight: 0.40, // em kg = 250g
         images: [
           "/img/redshorts.jpeg",
           "/img/redshorts_1.jpeg"
@@ -135,7 +135,7 @@ export const categories: Category[] = [
         id: "p35", //aqui
         name: "Short Academia fitness Feminino Beje",
         price: 19.99,
-        weight: 0.15, // em kg = 150g
+        weight: 0.40, // em kg = 250g
         images: [
           "/img/nudeshorts.jpeg",
           "/img/nudeshorts_1.jpeg",
@@ -155,7 +155,7 @@ export const categories: Category[] = [
         id: "p10",
         name: "Kit Legging + Top Verde",
         price: 55.00,
-        weight: 0.38, // em kg = 380g
+        weight: 0.40, // em kg = 250g
         images: [
           "/img/kitlegginggreen.jpeg",
           "/img/kitlegginggreen_1.jpeg",
@@ -167,7 +167,7 @@ export const categories: Category[] = [
         id: "p11",
         name: "Kit Legging + Top Vermelho",
         price: 55.00,
-        weight: 0.38, // em kg = 380g
+        weight: 0.40, // em kg = 250g
         images: [
           "/img/kitleggingred.jpeg",
           "/img/kitleggingred_1.jpeg",
@@ -178,7 +178,7 @@ export const categories: Category[] = [
         id: "p12",
         name: "Kit Legging + Top Cinza Claro",
         price: 55.00,
-        weight: 0.38, // em kg = 380g
+        weight: 0.40, // em kg = 250g
         images: [
           "/img/kitleggingray.jpeg",
           "/img/kitleggingray_1.jpeg",
@@ -189,7 +189,7 @@ export const categories: Category[] = [
         id: "p13",
         name: "Kit Legging + Top Roxo",
         price: 55.00,
-        weight: 0.38, // em kg = 380g
+        weight: 0.40, // em kg = 250g
         images: [
           "/img/kitlegginpurple.jpeg",
           "/img/kitlegginpurple_1.jpeg",
@@ -200,7 +200,7 @@ export const categories: Category[] = [
         id: "p14",
         name: "Kit Legging + Top Cinza Escuro",
         price: 55.00,
-        weight: 0.38, // em kg = 380g
+        weight: 0.40, // em kg = 250g
         images: [
           "/img/kitleggingray_2.jpeg",
           "/img/kitleggingray_3.jpeg",
@@ -210,7 +210,7 @@ export const categories: Category[] = [
       {
         id: "p15",
         name: "Kit Legging + Top Rosa",
-        weight: 0.38, // em kg = 380g
+        weight: 0.40, // em kg = 250g
         price: 55.00,
         images: [
           "/img/kitlegginpink.jpeg",
@@ -231,7 +231,7 @@ export const categories: Category[] = [
         id: "p16",
         name: "Calça Pantalona Preta",
         price: 39.99,
-        weight: 0.38, // em kg = 380g
+        weight: 0.40, // em kg = 250g
         images: [
           "/img/calça_pantalona_1.jpeg",
           "/img/calça_pantalona_2.jpeg",
@@ -247,7 +247,7 @@ export const categories: Category[] = [
         id: "p17",
         name: "Calça Pantalona Amarela",
         price: 39.99,
-        weight: 0.38, // em kg = 380g
+        weight: 0.40, // em kg = 250g
         images: [
           "/img/calça_pantalona_4.jpeg",
           "/img/calça_pantalona_8.jpeg",
@@ -262,7 +262,7 @@ export const categories: Category[] = [
         id: "p18",
         name: "Calça Pantalona Verde",
         price: 39.99,
-        weight: 0.38, // em kg = 380g
+        weight: 0.40, // em kg = 250g
         images: [
           "/img/calça_pantalona_7.jpeg",
           "/img/calça_pantalona_5.jpeg",
@@ -288,7 +288,7 @@ export const categories: Category[] = [
         id: "p19",
         name: "Legging 3D Beje",
         price: 39.99,
-        weight: 0.38, // em kg = 380g
+        weight: 0.40, // em kg = 250g
         images: [
           "/img/LEGGING_3D_marron.webp",
 
@@ -302,7 +302,7 @@ export const categories: Category[] = [
         id: "p20",
         name: "Legging 3D Preta",
         price: 39.99,
-        weight: 0.38, // em kg = 380g
+        weight: 0.40, // em kg = 250g
         images: [
           "/img/LEGGING_3D_preta.jpeg",
           "/img/LEGGING_3D_preta_1.jpeg",
@@ -317,7 +317,7 @@ export const categories: Category[] = [
         id: "p21",
         name: "Legging 3D Vermelha",
         price: 39.99,
-        weight: 0.38, // em kg = 380g
+        weight: 0.40, // em kg = 250g
         images: [
           "/img/LEGGING_3D_vermelha.jpeg",
 
@@ -331,7 +331,7 @@ export const categories: Category[] = [
         id: "p22",
         name: "Legging 3D Roxa",
         price: 39.99,
-        weight: 0.38, // em kg = 380g
+        weight: 0.40, // em kg = 250g
         images: [
           "/img/LEGGING_3D_ROXO.jpeg",
 
@@ -345,7 +345,7 @@ export const categories: Category[] = [
         id: "p23",
         name: "Legging 3D Pink",
         price: 39.99,
-        weight: 0.38, // em kg = 380g
+        weight: 0.40, // em kg = 250g
         images: [
           "/img/LEGGING_3D_PINK.jpeg",
 
@@ -384,7 +384,7 @@ export const categories: Category[] = [
         id: "p25",
         name: "Empina Bumbum",
         price: 35.00,
-        weight: 0.38, // em kg = 380g
+        weight: 0.40, // em kg = 250g
         images: [
           "/img/EMPINABUMBUM_2.jpeg",
 
@@ -398,7 +398,7 @@ export const categories: Category[] = [
         id: "p26",
         name: "Empina Bumbum",
         price: 35.00,
-        weight: 0.38, // em kg = 380g
+        weight: 0.40, // em kg = 250g
         images: [
           "/img/EMPINABUMBUM_3.jpeg",
 
@@ -412,7 +412,7 @@ export const categories: Category[] = [
         id: "p27",
         name: "Empina Bumbum",
         price: 35.00,
-        weight: 0.38, // em kg = 380g
+        weight: 0.40, // em kg = 250g
         images: [
           "/img/EMPINABUMBUM_4.jpeg",
 
@@ -436,7 +436,7 @@ export const categories: Category[] = [
         id: "p29",
         name: "Macaquinho Tyedye Verde",
         price: 79.99,
-        weight: 0.38, // em kg = 380g
+        weight: 0.40, // em kg = 250g
         images: [
           "/img/MACAQUINHOTYEDYE_1.jpeg",
           "/img/MACAQUINHOTYEDYE_2.jpeg",
@@ -453,7 +453,7 @@ export const categories: Category[] = [
         id: "p30",
         name: "Macaquinho Tyedye Rosa",
         price: 79.99,
-        weight: 0.38, // em kg = 380g
+        weight: 0.40, // em kg = 250g
         images: [
           "/img/MACAQUINHOTYEDYE_4.jpeg",
           "/img/MACAQUINHOTYEDYE_5.jpeg",
@@ -470,7 +470,7 @@ export const categories: Category[] = [
         id: "p31",
         name: "Macaquinho Tyedye Preto",
         price: 79.99,
-        weight: 0.38, // em kg = 380g
+        weight: 0.40, // em kg = 250g
         images: [
           "/img/MACAQUINHOTYEDYE_7.jpeg",
           "/img/MACAQUINHOTYEDYE_8.jpeg",
@@ -486,7 +486,7 @@ export const categories: Category[] = [
         id: "p32",
         name: "Macaquinho Tyedye Cinza",
         price: 79.99,
-        weight: 0.38, // em kg = 380g
+        weight: 0.40, // em kg = 250g
         images: [
           "/img/MACAQUINHOTYEDYE_10.jpeg",
           "/img/MACAQUINHOTYEDYE_11.jpeg",
@@ -514,7 +514,7 @@ export const categories: Category[] = [
         id: "p40",
         name: "Conjunto Empina Bumbum Yoga Roxo",
         price: 49.99,
-        weight: 0.38, // em kg = 380g
+        weight: 0.40, // em kg = 250g
         images: [
           "/img/empinabumbumyoga_azul-1.jpeg",
           "/img/empinabumbumyoga_azul.jpeg",
@@ -529,7 +529,7 @@ export const categories: Category[] = [
         id: "p36",
         name: "Conjunto Empina Bumbum Yoga Azul Bebe",
         price: 49.99,
-        weight: 0.38, // em kg = 380g
+        weight: 0.40, // em kg = 250g
         images: [
           "/img/empinabumbumyoga_azul-bebe-1.jpeg",
           "/img/empinabumbumyoga_azul-bebe.jpeg",
@@ -544,7 +544,7 @@ export const categories: Category[] = [
         id: "p37",
         name: "Conjunto Empina Bumbum Yoga Cinza",
         price: 49.99,
-        weight: 0.38, // em kg = 380g
+        weight: 0.40, // em kg = 250g
         images: [
           "/img/empinabumbumyoga_cinza-1.jpeg",
           "/img/empinabumbumyoga_cinza.jpeg",
@@ -559,7 +559,7 @@ export const categories: Category[] = [
         id: "p38",
         name: "Conjunto Empina Bumbum Yoga Cinza",
         price: 49.99,
-        weight: 0.38, // em kg = 380g
+        weight: 0.40, // em kg = 250g
         images: [
           "/img/empinabumbumyoga_rosa-1.jpeg",
           "/img/empinabumbumyoga_rosa.jpeg",
@@ -574,7 +574,7 @@ export const categories: Category[] = [
         id: "p39",
         name: "Conjunto Empina Bumbum Yoga Cinza",
         price: 49.99,
-        weight: 0.38, // em kg = 380g
+        weight: 0.40, // em kg = 250g
         images: [
           "/img/empinabumbumyoga_vermelho-2.jpeg",
           "/img/empinabumbumyoga_vermelho-1.jpeg",

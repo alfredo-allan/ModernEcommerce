@@ -4,6 +4,7 @@ import axios from "axios";
 const API_MERCADO_PAGO = "https://vps60230.publiccloud.com.br";
 const API_MELHOR_ENVIO = "https://vps60230.publiccloud.com.br"; // local para Melhor Envio
 
+// Interfaces
 export interface ProdutoFrete {
     name: string;
     quantity: number;
@@ -19,6 +20,26 @@ export interface CalcularFretePayload {
     produtos: ProdutoFrete[];
 }
 
+// 🆕 Dimensões padrão em cm
+const DEFAULT_HEIGHT = 2;   // altura em cm
+const DEFAULT_WIDTH = 15;   // largura em cm
+const DEFAULT_LENGTH = 20;  // comprimento em cm
+
+
+// 🆕 Função utilitária para aplicar dimensões padrão
+function aplicarDimensoesPadrao(produtos: Partial<ProdutoFrete>[]): ProdutoFrete[] {
+    return produtos.map((produto) => ({
+        name: produto.name!,
+        quantity: produto.quantity ?? 1,
+        unitary_value: produto.unitary_value!,
+        weight: produto.weight!,
+        height: produto.height ?? DEFAULT_HEIGHT,
+        width: produto.width ?? DEFAULT_WIDTH,
+        length: produto.length ?? DEFAULT_LENGTH,
+    }));
+}
+
+// 🔁 Mantido 100% como estava
 export const criarPagamento = async (payload: {
     user_id: number;
     amount: number;
@@ -61,7 +82,6 @@ export const criarOrdem = async (payload: {
     total: number;
 }) => {
     try {
-        // ⚠️ Sanitize: converte `null` para `undefined`
         const sanitizedPayload = {
             ...payload,
             mercado_pago_order_id: payload.mercado_pago_order_id || undefined,
@@ -85,6 +105,7 @@ export const criarOrdem = async (payload: {
     }
 };
 
+// ✅ Refatorado: aplica dimensões padrão automaticamente
 export const getFrete = async (
     payload: CalcularFretePayload
 ): Promise<
@@ -95,9 +116,15 @@ export const getFrete = async (
     | { success: false; error: string; details?: any }
 > => {
     try {
-        const response = await axios.post(`${API_MELHOR_ENVIO}/shipping`, payload, {
+        const payloadComDimensoes = {
+            cep: payload.cep,
+            produtos: aplicarDimensoesPadrao(payload.produtos),
+        };
+
+        const response = await axios.post(`${API_MELHOR_ENVIO}/shipping`, payloadComDimensoes, {
             withCredentials: true,
         });
+
         const servicos = response.data;
 
         if (Array.isArray(servicos) && servicos.length > 0) {
@@ -126,17 +153,15 @@ export const getFrete = async (
     }
 };
 
+// 🔁 Mantido como estava
 export const gerarEtiqueta = async (objetoFrete: any) => {
     try {
-        // 1. Adiciona ao carrinho
         const resCart = await axios.post(`${API_MELHOR_ENVIO}/shipping/cart`, objetoFrete);
         const shipmentId = resCart.data[0]?.id;
         if (!shipmentId) throw new Error("ID do frete não retornado");
 
-        // 2. Paga etiqueta
         await axios.post(`${API_MELHOR_ENVIO}/shipping/checkout`, [shipmentId]);
 
-        // 3. Gera etiqueta
         const resEtiqueta = await axios.post(`${API_MELHOR_ENVIO}/shipping/generate`, [shipmentId]);
 
         return {
