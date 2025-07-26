@@ -52,28 +52,69 @@ const CheckoutPage = () => {
     const [modalMessage, setModalMessage] = useState("");
     const [showModal, setShowModal] = useState(false);
 
+    // Função para normalizar nomes das empresas
+    const normalizeCompanyName = (name: string): string => {
+        const lowerName = name.toLowerCase();
+
+        // Correios (PAC, SEDEX, etc.)
+        if (lowerName.includes('pac')) return 'PAC - Correios';
+        if (lowerName.includes('sedex')) return 'SEDEX - Correios';
+        if (lowerName.includes('correios')) return 'Correios';
+
+        // Jadlog
+        if (lowerName.includes('.com') || lowerName.includes('jadlog')) return 'Jadlog';
+        if (lowerName.includes('.package')) return 'Jadlog Package';
+
+        // Loggi
+        if (lowerName.includes('loggi')) return 'Loggi';
+
+        // Azul Cargo
+        if (lowerName.includes('azul')) return 'Azul Cargo Express';
+
+        // Mercado Envios
+        if (lowerName.includes('mercado')) return 'Mercado Envios';
+
+        // Via Brasil
+        if (lowerName.includes('via brasil')) return 'Via Brasil';
+
+        // Retorna o nome original se não encontrar correspondência
+        return name;
+    };
+
     // Função para obter ícone da empresa
     const getCompanyIcon = (companyName: string) => {
         const name = companyName.toLowerCase();
 
+        // Correios (PAC, SEDEX)
         if (name.includes('correios') || name.includes('sedex') || name.includes('pac')) {
-            return '📮';
+            return '📮'; // Caixa de correio
         }
-        if (name.includes('jadlog')) {
-            return '📦';
+
+        // Jadlog (.com, .package)
+        if (name.includes('jadlog') || name.includes('.com') || name.includes('.package')) {
+            return '📦'; // Caixa vermelha/pacote
         }
-        if (name.includes('azul') || name.includes('azul cargo')) {
-            return '✈️';
-        }
+
+        // Loggi
         if (name.includes('loggi')) {
-            return '🚚';
+            return '🛵'; // Moto delivery (característico da Loggi)
         }
-        if (name.includes('mercado envios')) {
-            return '🛒';
+
+        // Azul Cargo
+        if (name.includes('azul')) {
+            return '✈️'; // Avião
         }
+
+        // Mercado Envios
+        if (name.includes('mercado')) {
+            return '🛒'; // Carrinho de compras
+        }
+
+        // Via Brasil
         if (name.includes('via brasil')) {
-            return '🇧🇷';
+            return '🇧🇷'; // Bandeira do Brasil
         }
+
         return '📋'; // ícone padrão
     };
 
@@ -138,7 +179,7 @@ const CheckoutPage = () => {
                     setSelectedFrete(cheapest);
                 }
             } else {
-                res.success === false ? res.error : "Erro desconhecido"
+                console.error("Erro na resposta do frete:", res.success === false ? res.error : "Erro desconhecido");
                 setFreteOptions([]);
             }
         } catch (error) {
