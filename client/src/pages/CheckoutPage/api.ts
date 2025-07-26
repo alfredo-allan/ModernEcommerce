@@ -1,17 +1,17 @@
 import axios from "axios";
 
-// ✅ APIs separadas
+// URLs da API
 const API_MERCADO_PAGO = "https://vps60230.publiccloud.com.br";
-const API_MELHOR_ENVIO = "https://vps60230.publiccloud.com.br"; // local para Melhor Envio
+const API_MELHOR_ENVIO = "https://vps60230.publiccloud.com.br"; // Flask backend
 
 // Interfaces
 export interface ProdutoFrete {
     name: string;
     quantity: number;
     unitary_value: number;
-    height: number;
-    width: number;
-    length: number;
+    height?: number;
+    width?: number;
+    length?: number;
     weight: number;
 }
 
@@ -20,26 +20,38 @@ export interface CalcularFretePayload {
     produtos: ProdutoFrete[];
 }
 
-// 🆕 Dimensões padrão em cm
-const DEFAULT_HEIGHT = 2;   // altura em cm
-const DEFAULT_WIDTH = 15;   // largura em cm
-const DEFAULT_LENGTH = 20;  // comprimento em cm
+export interface Endereco {
+    name: string;
+    phone: string;
+    email: string;
+    document: string;
+    company?: string;
+    address: string;
+    number: string;
+    complement?: string;
+    district: string;
+    city: string;
+    state: string;
+    country: string;
+    postal_code: string;
+}
 
+// Dimensões padrão (em cm)
+const DEFAULT_HEIGHT = 2;
+const DEFAULT_WIDTH = 15;
+const DEFAULT_LENGTH = 20;
 
-// 🆕 Função utilitária para aplicar dimensões padrão
-function aplicarDimensoesPadrao(produtos: Partial<ProdutoFrete>[]): ProdutoFrete[] {
+// Aplica dimensões padrão onde necessário
+function aplicarDimensoesPadrao(produtos: ProdutoFrete[]): ProdutoFrete[] {
     return produtos.map((produto) => ({
-        name: produto.name!,
-        quantity: produto.quantity ?? 1,
-        unitary_value: produto.unitary_value!,
-        weight: produto.weight!,
+        ...produto,
         height: produto.height ?? DEFAULT_HEIGHT,
         width: produto.width ?? DEFAULT_WIDTH,
         length: produto.length ?? DEFAULT_LENGTH,
     }));
 }
 
-// 🔁 Mantido 100% como estava
+// 🔁 Criação de pagamento Mercado Pago
 export const criarPagamento = async (payload: {
     user_id: number;
     amount: number;
@@ -65,6 +77,7 @@ export const criarPagamento = async (payload: {
     }
 };
 
+// 🔁 Criação da ordem no banco
 export const criarOrdem = async (payload: {
     user_id: number;
     order_id: string;
@@ -82,19 +95,9 @@ export const criarOrdem = async (payload: {
     total: number;
 }) => {
     try {
-        const sanitizedPayload = {
-            ...payload,
-            mercado_pago_order_id: payload.mercado_pago_order_id || undefined,
-            mercado_pago_payment_id: payload.mercado_pago_payment_id || undefined,
-            payment_type: payload.payment_type || undefined,
-            payment_status: payload.payment_status || undefined,
-            payment_status_detail: payload.payment_status_detail || undefined,
-        };
-
-        const res = await axios.post(`${API_MELHOR_ENVIO}/orders/`, sanitizedPayload, {
+        const res = await axios.post(`${API_MELHOR_ENVIO}/orders/`, payload, {
             withCredentials: true,
         });
-
         return { success: true, data: res.data };
     } catch (error: any) {
         console.error("Erro ao criar ordem:", error);
@@ -105,72 +108,70 @@ export const criarOrdem = async (payload: {
     }
 };
 
-// ✅ Refatorado: aplica dimensões padrão automaticamente
+// ✅ Calcular opções de frete
 export const getFrete = async (
     payload: CalcularFretePayload
-): Promise<
-    | {
-        success: true;
-        data: any[];
-    }
-    | { success: false; error: string; details?: any }
-> => {
+): Promise<{ success: true; data: any[] } | { success: false; error: string; details?: any }> => {
     try {
         const payloadComDimensoes = {
-            cep: payload.cep,
+            cep_destino: payload.cep,
             produtos: aplicarDimensoesPadrao(payload.produtos),
         };
 
-        const response = await axios.post(`${API_MELHOR_ENVIO}/shipping`, payloadComDimensoes, {
+        const res = await axios.post(`${API_MELHOR_ENVIO}/shipping/calculate`, payloadComDimensoes, {
             withCredentials: true,
         });
 
-        const servicos = response.data;
+        const fretes = res.data.fretes;
 
-        if (Array.isArray(servicos) && servicos.length > 0) {
-            const validOptions = servicos.filter(
-                (item: any) => item.price && !item.error
-            );
-
-            if (validOptions.length === 0) {
-                return { success: false, error: "Nenhum frete válido encontrado" };
-            }
-
-            return {
-                success: true,
-                data: validOptions,
-            };
+        if (!Array.isArray(fretes) || fretes.length === 0) {
+            return { success: false, error: "Nenhum serviço de frete retornado" };
         }
 
-        return { success: false, error: "Nenhum serviço de frete retornado" };
+        const validos = fretes.filter((f: any) => f.price && !f.error);
+        if (validos.length === 0) {
+            return { success: false, error: "Nenhum frete válido encontrado" };
+        }
+
+        return { success: true, data: validos };
     } catch (error: any) {
         console.error("Erro ao calcular frete:", error);
         return {
             success: false,
             error: error.response?.data?.error || "Erro ao calcular frete",
-            details: error.response?.data?.details,
+            details: error.response?.data,
         };
     }
 };
 
-// 🔁 Mantido como estava
-export const gerarEtiqueta = async (objetoFrete: any) => {
+// ✅ Gera a etiqueta (etapas: cart -> checkout -> generate)
+export const gerarEtiqueta = async (objetoFrete: {
+    frete_id: string;
+    endereco_origem: Endereco;
+    endereco_destino: Endereco;
+    volumes: any[];
+}) => {
     try {
-        const resCart = await axios.post(`${API_MELHOR_ENVIO}/shipping/cart`, objetoFrete);
-        const shipmentId = resCart.data[0]?.id;
+        const cartRes = await axios.post(`${API_MELHOR_ENVIO}/shipping/cart`, objetoFrete);
+        const shipmentId = cartRes.data[0]?.id;
+
         if (!shipmentId) throw new Error("ID do frete não retornado");
 
-        await axios.post(`${API_MELHOR_ENVIO}/shipping/checkout`, [shipmentId]);
+        await axios.post(`${API_MELHOR_ENVIO}/shipping/checkout`, { shipment_ids: [shipmentId] });
+        const generateRes = await axios.post(`${API_MELHOR_ENVIO}/shipping/generate`, { shipment_ids: [shipmentId] });
 
-        const resEtiqueta = await axios.post(`${API_MELHOR_ENVIO}/shipping/generate`, [shipmentId]);
+        const etiqueta = generateRes.data[0];
 
         return {
             success: true,
-            etiqueta: resEtiqueta.data[0],
-            link: resEtiqueta.data[0]?.label_url,
+            etiqueta,
+            link: etiqueta?.label_url,
         };
     } catch (error: any) {
-        console.error("Erro no processo de gerar etiqueta:", error);
-        return { success: false, error: error.message };
+        console.error("Erro ao gerar etiqueta:", error);
+        return {
+            success: false,
+            error: error.message || "Erro ao gerar etiqueta",
+        };
     }
 };
