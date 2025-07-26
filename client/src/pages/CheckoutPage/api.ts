@@ -74,6 +74,32 @@ function adicionarTaxaFrete(preco: string): string {
     return precoComTaxa.toFixed(2);
 }
 
+// Mapeia nomes das empresas para nomes das imagens no Melhor Envio
+function getCompanyImageName(companyName: string): string {
+    const name = companyName.toLowerCase();
+
+    if (name.includes('correios') || name.includes('sedex') || name.includes('pac')) {
+        return 'correios';
+    }
+    if (name.includes('jadlog') || name === '.com' || name === '.package') {
+        return 'jadlog';
+    }
+    if (name.includes('loggi')) {
+        return 'loggi';
+    }
+    if (name.includes('azul')) {
+        return 'azul-cargo';
+    }
+    if (name.includes('mercado')) {
+        return 'mercado-envios';
+    }
+    if (name.includes('via brasil')) {
+        return 'via-brasil';
+    }
+
+    return 'default'; // fallback
+}
+
 // 🔁 Criação de pagamento Mercado Pago
 export const criarPagamento = async (payload: {
     user_id: number;
@@ -171,7 +197,7 @@ export const getFrete = async (
             company: {
                 id: frete.company?.id || 0,
                 name: frete.company?.name || frete.name,
-                picture: frete.company?.picture || "",
+                picture: frete.company?.picture || `https://sandbox.melhorenvio.com.br/images/shipping-companies/${getCompanyImageName(frete.company?.name || frete.name)}.png`,
             },
         }));
 

@@ -54,68 +54,26 @@ const CheckoutPage = () => {
 
     // Função para normalizar nomes das empresas
     const normalizeCompanyName = (name: string): string => {
-        const lowerName = name.toLowerCase();
+        const lowerName = name.toLowerCase().trim();
 
         // Correios (PAC, SEDEX, etc.)
-        if (lowerName.includes('pac')) return 'PAC - Correios';
-        if (lowerName.includes('sedex')) return 'SEDEX - Correios';
+        if (lowerName.includes('pac')) return 'PAC';
+        if (lowerName.includes('sedex')) return 'SEDEX';
         if (lowerName.includes('correios')) return 'Correios';
 
-        // Jadlog
-        if (lowerName.includes('.com') || lowerName.includes('jadlog')) return 'Jadlog';
-        if (lowerName.includes('.package')) return 'Jadlog Package';
+        // Jadlog - mantém o nome original (.com, .package)
+        if (lowerName === '.com' || lowerName.startsWith('.com')) return '.Com';
+        if (lowerName === '.package' || lowerName.startsWith('.package')) return '.Package';
+        if (lowerName.includes('jadlog')) return 'Jadlog';
 
-        // Loggi
+        // Outras empresas
         if (lowerName.includes('loggi')) return 'Loggi';
-
-        // Azul Cargo
         if (lowerName.includes('azul')) return 'Azul Cargo Express';
-
-        // Mercado Envios
         if (lowerName.includes('mercado')) return 'Mercado Envios';
-
-        // Via Brasil
         if (lowerName.includes('via brasil')) return 'Via Brasil';
 
         // Retorna o nome original se não encontrar correspondência
         return name;
-    };
-
-    // Função para obter ícone da empresa
-    const getCompanyIcon = (companyName: string) => {
-        const name = companyName.toLowerCase();
-
-        // Correios (PAC, SEDEX)
-        if (name.includes('correios') || name.includes('sedex') || name.includes('pac')) {
-            return '📮'; // Caixa de correio
-        }
-
-        // Jadlog (.com, .package)
-        if (name.includes('jadlog') || name.includes('.com') || name.includes('.package')) {
-            return '📦'; // Caixa vermelha/pacote
-        }
-
-        // Loggi
-        if (name.includes('loggi')) {
-            return '🛵'; // Moto delivery (característico da Loggi)
-        }
-
-        // Azul Cargo
-        if (name.includes('azul')) {
-            return '✈️'; // Avião
-        }
-
-        // Mercado Envios
-        if (name.includes('mercado')) {
-            return '🛒'; // Carrinho de compras
-        }
-
-        // Via Brasil
-        if (name.includes('via brasil')) {
-            return '🇧🇷'; // Bandeira do Brasil
-        }
-
-        return '📋'; // ícone padrão
     };
 
     useEffect(() => {
@@ -321,17 +279,24 @@ const CheckoutPage = () => {
                                             <RadioGroupItem value={option.id} id={option.id} />
                                             <label htmlFor={option.id} className="flex-1 cursor-pointer">
                                                 <div className="flex items-center justify-between">
-                                                    <div className="flex items-center space-x-2">
-                                                        <span className="text-lg">{getCompanyIcon(option.company?.name || option.name)}</span>
+                                                    <div className="flex items-center space-x-3">
+                                                        <img
+                                                            src={option.company.picture}
+                                                            alt={option.company.name}
+                                                            className="w-8 h-8 object-contain"
+                                                            onError={(e) => {
+                                                                // Fallback para caso a imagem não carregue
+                                                                e.currentTarget.style.display = 'none';
+                                                            }}
+                                                        />
                                                         <div>
-                                                            <p className="text-sm font-medium">{option.name}</p>
+                                                            <p className="text-sm font-medium">
+                                                                {normalizeCompanyName(option.name)} - R$ {parseFloat(option.price).toFixed(2)}
+                                                            </p>
                                                             <p className="text-xs text-gray-500">
-                                                                {option.delivery_time} dia{option.delivery_time !== 1 ? 's' : ''} úteis
+                                                                Entrega em {option.delivery_time} dia{option.delivery_time !== 1 ? 's' : ''} úteis
                                                             </p>
                                                         </div>
-                                                    </div>
-                                                    <div className="text-right">
-                                                        <p className="text-sm font-semibold">R$ {parseFloat(option.price).toFixed(2)}</p>
                                                     </div>
                                                 </div>
                                             </label>
