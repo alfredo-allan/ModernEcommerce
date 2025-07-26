@@ -6,11 +6,18 @@ import { getFrete, criarPagamento, criarOrdem } from "./api";
 import { ResponseModal } from "@/components/ResponseModal";
 import AddressForm from "@/components/AddressForm";
 import { useTheme } from "@/context/ThemeContext";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 
 type FreteOption = {
-    price: string; // pode ser number dependendo da API
+    id: string;
+    price: string;
     name: string;
     delivery_time: number;
+    company: {
+        id: number;
+        name: string;
+        picture: string;
+    };
     error?: string;
 };
 
@@ -35,18 +42,40 @@ const CheckoutPage = () => {
         numero: "",
     });
 
-    const [deliveryCost, setDeliveryCost] = useState<number | null>(null);
-    const [selectedFrete, setSelectedFrete] = useState<null | {
-        price: number;
-        name: string;
-        deliveryTime: number;
-    }>(null);
+    const [freteOptions, setFreteOptions] = useState<FreteOption[]>([]);
+    const [selectedFreteId, setSelectedFreteId] = useState<string | null>(null);
+    const [selectedFrete, setSelectedFrete] = useState<FreteOption | null>(null);
 
     const [isLoadingFrete, setIsLoadingFrete] = useState(false);
     const [isLoadingCheckout, setIsLoadingCheckout] = useState(false);
     const [modalStatus, setModalStatus] = useState<"success" | "error" | null>(null);
     const [modalMessage, setModalMessage] = useState("");
     const [showModal, setShowModal] = useState(false);
+
+    // Função para obter ícone da empresa
+    const getCompanyIcon = (companyName: string) => {
+        const name = companyName.toLowerCase();
+
+        if (name.includes('correios') || name.includes('sedex') || name.includes('pac')) {
+            return '📮';
+        }
+        if (name.includes('jadlog')) {
+            return '📦';
+        }
+        if (name.includes('azul') || name.includes('azul cargo')) {
+            return '✈️';
+        }
+        if (name.includes('loggi')) {
+            return '🚚';
+        }
+        if (name.includes('mercado envios')) {
+            return '🛒';
+        }
+        if (name.includes('via brasil')) {
+            return '🇧🇷';
+        }
+        return '📋'; // ícone padrão
+    };
 
     useEffect(() => {
         if (loadingUser) return;
@@ -76,6 +105,9 @@ const CheckoutPage = () => {
         if (!cleanCep || items.length === 0) return;
 
         setIsLoadingFrete(true);
+        setFreteOptions([]);
+        setSelectedFreteId(null);
+        setSelectedFrete(null);
 
         const payload = {
             cep: cleanCep,
@@ -93,29 +125,25 @@ const CheckoutPage = () => {
         try {
             const res: FreteResponse = await getFrete(payload);
 
-            if (res.success) {
-                const valid = res.data.filter((opt) => opt.price && !opt.error);
+            if (res.success && res.data) {
+                const validOptions = res.data.filter((opt) => opt.price && !opt.error);
+                setFreteOptions(validOptions);
 
-                if (valid.length > 0) {
-                    const menor = valid.reduce((a: FreteOption, b: FreteOption) =>
+                // Auto-seleciona a opção mais barata
+                if (validOptions.length > 0) {
+                    const cheapest = validOptions.reduce((a, b) =>
                         parseFloat(a.price) < parseFloat(b.price) ? a : b
                     );
-                    setDeliveryCost(parseFloat(menor.price));
-                    setSelectedFrete({
-                        price: parseFloat(menor.price),
-                        name: menor.name,
-                        deliveryTime: menor.delivery_time,
-                    });
-                } else {
-                    setDeliveryCost(null);
+                    setSelectedFreteId(cheapest.id);
+                    setSelectedFrete(cheapest);
                 }
             } else {
-                console.error("Erro na resposta do frete:", res.error);
-                setDeliveryCost(null);
+                res.success === false ? res.error : "Erro desconhecido"
+                setFreteOptions([]);
             }
         } catch (error) {
             console.error("Erro ao calcular frete:", error);
-            setDeliveryCost(null);
+            setFreteOptions([]);
         } finally {
             setIsLoadingFrete(false);
         }
@@ -126,8 +154,17 @@ const CheckoutPage = () => {
         if (cepLimpo.length === 8) fetchFrete(cepLimpo);
     }, [editableAddress.cep, fetchFrete]);
 
+    const handleFreteSelection = (freteId: string) => {
+        const selected = freteOptions.find(opt => opt.id === freteId);
+        if (selected) {
+            setSelectedFreteId(freteId);
+            setSelectedFrete(selected);
+        }
+    };
+
     const totalBag = items.reduce((acc, item) => acc + (item.price || 0) * item.quantity, 0);
-    const totalFinal = deliveryCost !== null ? totalBag + deliveryCost : totalBag;
+    const deliveryCost = selectedFrete ? parseFloat(selectedFrete.price) : 0;
+    const totalFinal = totalBag + deliveryCost;
 
     const handleCheckout = async () => {
         if (!loggedInUser?.id) return;
@@ -139,7 +176,7 @@ const CheckoutPage = () => {
             const pagamento = await criarPagamento({
                 user_id: loggedInUser.id,
                 amount: totalFinal,
-                frete: deliveryCost || 0,
+                frete: deliveryCost,
                 order_id,
                 produtos: items.map((item) => ({
                     name: item.name,
@@ -162,7 +199,7 @@ const CheckoutPage = () => {
                         quantity: item.quantity,
                         unitary_value: item.price || 0,
                     })),
-                    frete: deliveryCost || 0,
+                    frete: deliveryCost,
                     total: totalFinal,
                 });
 
@@ -184,19 +221,6 @@ const CheckoutPage = () => {
 
     const bgMain = theme === "dark" ? "bg-gray-900 text-gray-100" : "bg-gray-50 text-gray-900";
     const bgCard = theme === "dark" ? "bg-gray-800" : "bg-white";
-    const btnPrimary = theme === "dark"
-        ? "bg-indigo-600 text-white hover:bg-indigo-700"
-        : "bg-indigo-500 text-white hover:bg-indigo-600";
-    function formatCep(value: string) {
-        // Remove tudo que não for número
-        const numbers = value.replace(/\D/g, "");
-
-        // Se tiver mais que 8, mostra tudo menos o último, para manter zero a mais
-        if (numbers.length <= 5) return numbers;
-        if (numbers.length <= 8) return numbers.replace(/^(\d{5})(\d{0,3})/, "$1-$2");
-        if (numbers.length > 8) return numbers.slice(0, 5) + "-" + numbers.slice(5, 8) + numbers.slice(8);
-    }
-
 
     return (
         <div className={`font-sans min-h-screen px-4 py-6 ${bgMain}`}>
@@ -238,25 +262,80 @@ const CheckoutPage = () => {
                 <div className={`${bgCard} p-6 rounded-xl shadow space-y-4`}>
                     <h2 className="text-lg font-semibold">Resumo</h2>
                     <p className="text-sm">Produtos: R$ {totalBag.toFixed(2)}</p>
-                    <p className="text-sm">
-                        Frete: {isLoadingFrete
-                            ? "Calculando..."
-                            : deliveryCost !== null
-                                ? `R$ ${deliveryCost.toFixed(2)} (${selectedFrete?.name})`
-                                : "Frete não calculado"}
-                    </p>
+
+                    {/* Seção de Frete */}
+                    <div className="space-y-3">
+                        <h3 className="text-sm font-medium">Opções de Frete:</h3>
+
+                        {isLoadingFrete ? (
+                            <div className="flex items-center justify-center py-4">
+                                <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-[#F1099E]"></div>
+                                <span className="ml-2 text-sm">Calculando...</span>
+                            </div>
+                        ) : freteOptions.length > 0 ? (
+                            <RadioGroup value={selectedFreteId || ""} onValueChange={handleFreteSelection}>
+                                <div className="space-y-3 max-h-64 overflow-y-auto">
+                                    {freteOptions.map((option) => (
+                                        <div key={option.id} className="flex items-center space-x-3 p-3 border rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
+                                            <RadioGroupItem value={option.id} id={option.id} />
+                                            <label htmlFor={option.id} className="flex-1 cursor-pointer">
+                                                <div className="flex items-center justify-between">
+                                                    <div className="flex items-center space-x-2">
+                                                        <span className="text-lg">{getCompanyIcon(option.company?.name || option.name)}</span>
+                                                        <div>
+                                                            <p className="text-sm font-medium">{option.name}</p>
+                                                            <p className="text-xs text-gray-500">
+                                                                {option.delivery_time} dia{option.delivery_time !== 1 ? 's' : ''} úteis
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                    <div className="text-right">
+                                                        <p className="text-sm font-semibold">R$ {parseFloat(option.price).toFixed(2)}</p>
+                                                    </div>
+                                                </div>
+                                            </label>
+                                        </div>
+                                    ))}
+                                </div>
+                            </RadioGroup>
+                        ) : (
+                            <p className="text-sm text-gray-500">
+                                {editableAddress.cep.replace(/\D/g, "").length === 8
+                                    ? "Nenhuma opção de frete disponível"
+                                    : "Informe o CEP para calcular o frete"}
+                            </p>
+                        )}
+                    </div>
+
                     <hr />
-                    <p className="font-bold text-lg">Total: R$ {totalFinal.toFixed(2)}</p>
+                    <div className="space-y-2">
+                        <div className="flex justify-between text-sm">
+                            <span>Subtotal:</span>
+                            <span>R$ {totalBag.toFixed(2)}</span>
+                        </div>
+                        <div className="flex justify-between text-sm">
+                            <span>Frete:</span>
+                            <span>
+                                {selectedFrete
+                                    ? `R$ ${deliveryCost.toFixed(2)}`
+                                    : "R$ 0,00"}
+                            </span>
+                        </div>
+                        <div className="flex justify-between font-bold text-lg pt-2 border-t">
+                            <span>Total:</span>
+                            <span>R$ {totalFinal.toFixed(2)}</span>
+                        </div>
+                    </div>
+
                     <button
                         onClick={handleCheckout}
-                        disabled={isLoadingCheckout || items.length === 0}
+                        disabled={isLoadingCheckout || items.length === 0 || !selectedFrete}
                         className="w-full py-2 rounded-md transition-colors text-white 
-             bg-[#F1099E] hover:bg-[#C10786] 
-             disabled:opacity-50 disabled:cursor-not-allowed"
+                            bg-[#F1099E] hover:bg-[#C10786] 
+                            disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                         {isLoadingCheckout ? "Processando..." : "Concluir Compra"}
                     </button>
-
                 </div>
             </div>
 

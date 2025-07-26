@@ -20,6 +20,19 @@ export interface CalcularFretePayload {
     produtos: ProdutoFrete[];
 }
 
+export interface FreteOption {
+    id: string;
+    price: string;
+    name: string;
+    delivery_time: number;
+    company: {
+        id: number;
+        name: string;
+        picture: string;
+    };
+    error?: string;
+}
+
 export interface Endereco {
     name: string;
     phone: string;
@@ -41,6 +54,9 @@ const DEFAULT_HEIGHT = 2;
 const DEFAULT_WIDTH = 15;
 const DEFAULT_LENGTH = 20;
 
+// Taxa adicional para frete (regra de negócio)
+const TAXA_ADICIONAL_FRETE = 2.00;
+
 // Aplica dimensões padrão onde necessário
 function aplicarDimensoesPadrao(produtos: ProdutoFrete[]): ProdutoFrete[] {
     return produtos.map((produto) => ({
@@ -49,6 +65,13 @@ function aplicarDimensoesPadrao(produtos: ProdutoFrete[]): ProdutoFrete[] {
         width: produto.width ?? DEFAULT_WIDTH,
         length: produto.length ?? DEFAULT_LENGTH,
     }));
+}
+
+// Adiciona taxa adicional ao valor do frete
+function adicionarTaxaFrete(preco: string): string {
+    const precoOriginal = parseFloat(preco);
+    const precoComTaxa = precoOriginal + TAXA_ADICIONAL_FRETE;
+    return precoComTaxa.toFixed(2);
 }
 
 // 🔁 Criação de pagamento Mercado Pago
@@ -108,10 +131,10 @@ export const criarOrdem = async (payload: {
     }
 };
 
-// ✅ Calcular opções de frete
+// ✅ Calcular opções de frete - REFATORADO para retornar todas as opções
 export const getFrete = async (
     payload: CalcularFretePayload
-): Promise<{ success: true; data: any[] } | { success: false; error: string; details?: any }> => {
+): Promise<{ success: true; data: FreteOption[] } | { success: false; error: string; details?: any }> => {
     try {
         const payloadComDimensoes = {
             cep_destino: payload.cep,
@@ -128,12 +151,34 @@ export const getFrete = async (
             return { success: false, error: "Nenhum serviço de frete retornado" };
         }
 
-        const validos = fretes.filter((f: any) => f.price && !f.error);
-        if (validos.length === 0) {
+        // Filtrar apenas opções válidas (sem erro e com preço)
+        const fretesValidos = fretes.filter((frete: any) =>
+            frete.price &&
+            !frete.error &&
+            parseFloat(frete.price) > 0
+        );
+
+        if (fretesValidos.length === 0) {
             return { success: false, error: "Nenhum frete válido encontrado" };
         }
 
-        return { success: true, data: validos };
+        // Mapear para a estrutura esperada pelo frontend
+        const fretesFormatados: FreteOption[] = fretesValidos.map((frete: any) => ({
+            id: frete.id || `${frete.company?.id || 'unknown'}-${frete.name.replace(/\s+/g, '-').toLowerCase()}`,
+            price: adicionarTaxaFrete(frete.price.toString()), // Adiciona R$ 2,00
+            name: frete.name,
+            delivery_time: frete.delivery_time || 0,
+            company: {
+                id: frete.company?.id || 0,
+                name: frete.company?.name || frete.name,
+                picture: frete.company?.picture || "",
+            },
+        }));
+
+        // Ordenar por preço (mais barato primeiro)
+        fretesFormatados.sort((a, b) => parseFloat(a.price) - parseFloat(b.price));
+
+        return { success: true, data: fretesFormatados };
     } catch (error: any) {
         console.error("Erro ao calcular frete:", error);
         return {

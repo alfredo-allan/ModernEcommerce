@@ -14,12 +14,10 @@ export const Footer = () => {
             <div className="space-y-2 text-gray-600 dark:text-gray-400">
               <p className="flex items-center">
                 <MapPin className="h-4 w-4 mr-2" />
-                Rua silvia, 978 - Olimpico
-              </p>
+                R. Aparecida, 141 - Boa Vista              </p>
               <p className="flex items-center">
                 <span className="w-4 mr-2"></span>
-                São Caetano, SP - 09571-300
-              </p>
+                São Caetano do Sul - SP, 09572-210              </p>
               <p className="flex items-center">
                 <Phone className="h-4 w-4 mr-2" />
                 (11) 97623-9695

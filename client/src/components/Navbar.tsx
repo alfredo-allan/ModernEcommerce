@@ -13,10 +13,15 @@ export const Navbar = () => {
   const { totalItems, toggleCart } = useCart();
   const { loggedInUser } = useAuth();
 
+  // Função para extrair apenas o primeiro nome
+  const getPrimeiroNome = (nomeCompleto: string | undefined): string => {
+    if (!nomeCompleto) return '';
+    return nomeCompleto.split(' ')[0];
+  };
+
   return (
     <nav className="font-sans sticky top-0 z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-700 w-full">
       <div className="relative flex items-center justify-between h-20 w-full overflow-hidden">
-
         {/* Logo 100% colado no canto esquerdo da tela */}
         <div className="absolute left-0 top-1/2 -translate-y-1/2 pl-2">
           <Link href="/" className="flex-shrink-0">
@@ -30,7 +35,6 @@ export const Navbar = () => {
 
         {/* Conteúdo principal centralizado */}
         <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-full">
-
           {/* Espaço vazio para compensar logo colado */}
           <div className="w-[120px] hidden md:block" />
 
@@ -41,8 +45,8 @@ export const Navbar = () => {
                 key={category.slug}
                 href={`/${category.slug}`}
                 className={`px-2 py-1 text-sm font-medium whitespace-nowrap truncate transition-colors ${location === `/${category.slug}`
-                  ? 'text-clientPink'
-                  : 'text-gray-700 dark:text-gray-300 hover:text-clientPinkHover'
+                    ? 'text-clientPink'
+                    : 'text-gray-700 dark:text-gray-300 hover:text-clientPinkHover'
                   }`}
               >
                 {category.name}
@@ -53,7 +57,6 @@ export const Navbar = () => {
           {/* Ações à direita */}
           <div className="flex items-center space-x-2 md:space-x-4 flex-shrink-0">
             <ThemeToggle />
-
             <Link href="/auth">
               <Button
                 variant="ghost"
@@ -62,20 +65,14 @@ export const Navbar = () => {
               >
                 <User className="h-4 w-4 mr-2" />
                 {loggedInUser ? (
-                  <>
-                    <span className="md:hidden">
-                      {loggedInUser.nome?.split(' ')[0] ?? ''}
-                    </span>
-                    <span className="hidden md:inline">
-                      {loggedInUser.nome}
-                    </span>
-                  </>
+                  <span>
+                    {getPrimeiroNome(loggedInUser.nome)}
+                  </span>
                 ) : (
                   'Login'
                 )}
               </Button>
             </Link>
-
             <Button
               variant="ghost"
               size="icon"
