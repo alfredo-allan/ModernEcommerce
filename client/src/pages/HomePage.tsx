@@ -13,7 +13,7 @@ export const HomePage = () => {
 
 
         <p className="font-sans text-xl text-gray-600 dark:text-gray-400 mb-8 max-w-2xl mx-auto">
-          Descubra nossa coleção de roupas e acessórios únicos
+          Descubra nossa coleção de roupas 🍒
         </p>
       </section>
 

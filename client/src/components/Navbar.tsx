@@ -21,58 +21,66 @@ export const Navbar = () => {
 
   return (
     <nav className="font-sans sticky top-0 z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-700 w-full">
-      <div className="relative flex items-center justify-between h-20 w-full overflow-hidden">
-        {/* Logo 100% colado no canto esquerdo da tela */}
-        <div className="absolute left-0 top-1/2 -translate-y-1/2 pl-2">
-          <Link href="/" className="flex-shrink-0">
-            <img
-              src="/img/cereja-doce-logo.png"
-              alt="Cereja Doce Moda"
-              className="h-12 md:h-16 object-contain"
-            />
-          </Link>
-        </div>
+      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-20">
 
-        {/* Conteúdo principal centralizado */}
-        <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-full">
-          {/* Espaço vazio para compensar logo colado */}
-          <div className="w-[120px] hidden md:block" />
+          {/* Logo */}
+          <div className="flex-shrink-0">
+            <Link href="/" className="block">
+              <img
+                src="/img/cereja-doce-logo.png"
+                alt="Cereja Doce Moda"
+                className="h-12 md:h-16 object-contain"
+              />
+            </Link>
+          </div>
 
           {/* Menu central (desktop) */}
-          <div className="hidden md:flex flex-1 justify-center space-x-4 min-w-0 overflow-hidden">
-            {categories.map((category) => (
-              <Link
-                key={category.slug}
-                href={`/${category.slug}`}
-                className={`px-2 py-1 text-sm font-medium whitespace-nowrap truncate transition-colors ${location === `/${category.slug}`
-                    ? 'text-clientPink'
-                    : 'text-gray-700 dark:text-gray-300 hover:text-clientPinkHover'
-                  }`}
-              >
-                {category.name}
-              </Link>
-            ))}
+          <div className="hidden md:flex flex-1 justify-center max-w-2xl mx-8">
+            <div className="flex items-center space-x-6 overflow-x-auto scrollbar-hide">
+              {categories.map((category) => (
+                <Link
+                  key={category.slug}
+                  href={`/${category.slug}`}
+                  className={`px-3 py-2 text-sm font-medium whitespace-nowrap transition-colors rounded-md ${location === `/${category.slug}`
+                    ? 'text-clientPink bg-clientPink/10'
+                    : 'text-gray-700 dark:text-gray-300 hover:text-clientPinkHover hover:bg-gray-100 dark:hover:bg-gray-800'
+                    }`}
+                >
+                  {category.name}
+                </Link>
+              ))}
+            </div>
           </div>
 
           {/* Ações à direita */}
-          <div className="flex items-center space-x-2 md:space-x-4 flex-shrink-0">
+          <div className="flex items-center space-x-2 md:space-x-3 flex-shrink-0">
             <ThemeToggle />
+
             <Link href="/auth">
               <Button
                 variant="ghost"
                 size="sm"
-                className="text-sm font-medium whitespace-nowrap"
+                className="text-sm font-medium whitespace-nowrap hidden sm:flex"
               >
                 <User className="h-4 w-4 mr-2" />
                 {loggedInUser ? (
-                  <span>
-                    {getPrimeiroNome(loggedInUser.nome)}
-                  </span>
+                  <span>{getPrimeiroNome(loggedInUser.nome)}</span>
                 ) : (
                   'Login'
                 )}
               </Button>
+
+              {/* Versão mobile só com ícone */}
+              <Button
+                variant="ghost"
+                size="icon"
+                className="sm:hidden h-9 w-9"
+              >
+                <User className="h-4 w-4" />
+              </Button>
             </Link>
+
             <Button
               variant="ghost"
               size="icon"
