@@ -50,22 +50,22 @@ export const GreetingModal = ({
                 {/* Ícone de cereja */}
                 <div className="flex justify-center mb-3">
                     <img
-                        src="/client/public/img/"
+                        src="img/cereja-doce-logo.png"
                         alt="Cereja"
-                        className="w-10 h-10"
+                        className="w-40 h-20"
                     />
                 </div>
 
                 {loggedInUser ? (
                     <h3 className="text-xl font-semibold">
                         Seja bem-vindo(a) à{" "}
-                        <span className="text-pink-500">Cereja Doce Moda 🍒</span>,{" "}
+                        <span className="text-pink-500">Cereja Doce Moda </span>,{" "}
                         {loggedInUser.nome}!
                     </h3>
                 ) : (
                     <>
                         <h3 className="text-xl font-semibold mb-4">
-                            Você precisa estar logado para continuar 🍒
+                            Você precisa estar logado para continuar
                         </h3>
                         <div className="flex justify-center gap-4">
                             <button
