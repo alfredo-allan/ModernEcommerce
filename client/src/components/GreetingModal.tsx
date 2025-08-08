@@ -58,9 +58,10 @@ export const GreetingModal = ({
 
                 {loggedInUser ? (
                     <h3 className="text-xl font-semibold">
-                        Seja bem-vindo(a) à{" "}
-                        <span className="text-pink-500">Cereja Doce Moda </span>,{" "}
-                        {loggedInUser.nome}!
+                        Seja bem-vindo(a) à{' '}
+                        <span className="text-pink-500">Cereja Doce Moda </span>,{' '}
+                        {(loggedInUser.nome && loggedInUser.nome.split(' ')[0]) || ''}
+                        !
                     </h3>
                 ) : (
                     <>
