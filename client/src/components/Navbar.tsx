@@ -13,7 +13,6 @@ export const Navbar = () => {
   const { totalItems, toggleCart } = useCart();
   const { loggedInUser } = useAuth();
 
-  // Função para extrair apenas o primeiro nome
   const getPrimeiroNome = (nomeCompleto: string | undefined): string => {
     if (!nomeCompleto) return '';
     return nomeCompleto.split(' ')[0];
@@ -24,28 +23,30 @@ export const Navbar = () => {
       <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
 
-          {/* Logo */}
-          <div className="flex-shrink-0">
+          {/* Logo totalmente à esquerda */}
+          <div className="flex-shrink-0 mr-8">
             <Link href="/" className="block">
               <img
                 src="/img/cereja-doce-logo.png"
                 alt="Cereja Doce Moda"
                 className="h-12 md:h-16 object-contain"
+                style={{ userSelect: 'none' }}
               />
             </Link>
           </div>
 
-          {/* Menu central (desktop) */}
-          <div className="hidden md:flex flex-1 justify-center max-w-2xl mx-8">
-            <div className="flex items-center space-x-6 overflow-x-auto scrollbar-hide">
+          {/* Categorias centralizadas, ocupando espaço flexível, sem scroll */}
+          <div className="hidden md:flex flex-1 justify-center max-w-full mx-0">
+            <div className="flex items-center justify-center space-x-4 w-full max-w-4xl">
               {categories.map((category) => (
                 <Link
                   key={category.slug}
                   href={`/${category.slug}`}
-                  className={`px-3 py-2 text-sm font-medium whitespace-nowrap transition-colors rounded-md ${location === `/${category.slug}`
+                  className={`flex-1 text-center px-2 py-2 text-xs md:text-sm font-medium whitespace-nowrap transition-colors rounded-md ${location === `/${category.slug}`
                     ? 'text-clientPink bg-clientPink/10'
                     : 'text-gray-700 dark:text-gray-300 hover:text-clientPinkHover hover:bg-gray-100 dark:hover:bg-gray-800'
                     }`}
+                  aria-current={location === `/${category.slug}` ? 'page' : undefined}
                 >
                   {category.name}
                 </Link>
@@ -53,8 +54,8 @@ export const Navbar = () => {
             </div>
           </div>
 
-          {/* Ações à direita */}
-          <div className="flex items-center space-x-2 md:space-x-3 flex-shrink-0">
+          {/* Ações fixas totalmente à direita */}
+          <div className="flex items-center space-x-2 md:space-x-3 flex-shrink-0 ml-8">
             <ThemeToggle />
 
             <Link href="/auth">
@@ -62,13 +63,10 @@ export const Navbar = () => {
                 variant="ghost"
                 size="sm"
                 className="text-sm font-medium whitespace-nowrap hidden sm:flex"
+                aria-label={loggedInUser ? `Perfil de ${getPrimeiroNome(loggedInUser.nome)}` : 'Login'}
               >
                 <User className="h-4 w-4 mr-2" />
-                {loggedInUser ? (
-                  <span>{getPrimeiroNome(loggedInUser.nome)}</span>
-                ) : (
-                  'Login'
-                )}
+                {loggedInUser ? getPrimeiroNome(loggedInUser.nome) : 'Login'}
               </Button>
 
               {/* Versão mobile só com ícone */}
@@ -76,6 +74,7 @@ export const Navbar = () => {
                 variant="ghost"
                 size="icon"
                 className="sm:hidden h-9 w-9"
+                aria-label="Login"
               >
                 <User className="h-4 w-4" />
               </Button>
@@ -86,6 +85,7 @@ export const Navbar = () => {
               size="icon"
               onClick={toggleCart}
               className="relative h-9 w-9 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+              aria-label={`Sacola de compras, ${totalItems} itens`}
             >
               <ShoppingBag className="h-4 w-4 text-gray-600 dark:text-gray-400" />
               {totalItems > 0 && (

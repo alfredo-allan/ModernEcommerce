@@ -12,6 +12,7 @@ export interface Product {
   height?: number; // em cm (opcional, pode usar valor padrão caso não tenha)
   width?: number;
   length?: number;
+  hasSingleSize?: boolean;
 }
 
 

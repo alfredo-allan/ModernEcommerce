@@ -12,6 +12,7 @@ export const categories: Category[] = [
         name: "Macaquinho Rosa",
         price: 56.53,
         weight: 0.50, // em kg = 250g
+        hasSingleSize: true,
         images: [
           "/img/littlemonkey_category.jpeg",
           "/img/littlemonkey_1.jpeg",
@@ -26,6 +27,7 @@ export const categories: Category[] = [
         name: "Macaquinho Azul",
         price: 56.53,
         weight: 0.50, // em kg = 250g
+        hasSingleSize: true,
         images: [
           "/img/littlebluemonkey.jpeg",
           "/img/littlebluemonkey_1.jpeg",
@@ -40,6 +42,7 @@ export const categories: Category[] = [
         name: "Macaquinho Verde",
         price: 56.53,
         weight: 0.50, // em kg = 250g
+        hasSingleSize: true,
         images: [
           "/img/littlegreenmonkey.jpeg",
           "/img/littlegreenmonkey_1.jpeg",
@@ -54,6 +57,7 @@ export const categories: Category[] = [
         name: "Macaquinho Rosa",
         price: 56.53,
         weight: 0.50, // em kg = 250g
+        hasSingleSize: true,
         images: [
           "/img/littlemonkey_1.jpeg",
           "/img/littlemonkey_category.jpeg",
@@ -70,13 +74,14 @@ export const categories: Category[] = [
     slug: "short",
     name: "Short Academia",
     seoTitle: "Short Academia",
-    description: "CINTURA ALTA | MODELA & LEVANTA BUMBUM",
+    description: "Cintura Alta | Modela & Levanta Bumbum",
     products: [
       {
         id: "p5",
         name: "Short Academia fitness Feminino Roxo",
         price: 19.95,
         weight: 0.50, // em kg = 250g
+        hasSingleSize: true,
         images: [
           "/img/blueshorts.jpeg",
           "/img/blueshorts_1.jpeg",
@@ -88,6 +93,7 @@ export const categories: Category[] = [
         name: "Short Academia fitness Feminino Cinza",
         price: 19.95,
         weight: 0.50, // em kg = 250g
+        hasSingleSize: true,
         images: [
           "/img/grayshorts.jpeg",
           "/img/grayshorts_1.jpeg",
@@ -101,6 +107,7 @@ export const categories: Category[] = [
         name: "Short Academia fitness Feminino Verde",
         price: 19.95,
         weight: 0.50, // em kg = 250g
+        hasSingleSize: true,
         images: [
           "/img/greenshorts_1.jpeg",
           "/img/greenshorts.jpeg",
@@ -113,6 +120,7 @@ export const categories: Category[] = [
         name: "Short Academia fitness Feminino Cinza Claro",
         price: 19.95,
         weight: 0.50, // em kg = 250g
+        hasSingleSize: true,
         images: [
           "/img/lightgrayshorts.jpeg",
           "/img/lightgrayshorts_1.jpeg"
@@ -124,6 +132,7 @@ export const categories: Category[] = [
         name: "Short Academia fitness Feminino Vermelho",
         price: 19.95,
         weight: 0.40, // em kg = 250g
+        hasSingleSize: true,
         images: [
           "/img/redshorts.jpeg",
           "/img/redshorts_1.jpeg"
@@ -136,6 +145,7 @@ export const categories: Category[] = [
         name: "Short Academia fitness Feminino Beje",
         price: 19.95,
         weight: 0.40, // em kg = 250g
+        hasSingleSize: true,
         images: [
           "/img/nudeshorts.jpeg",
           "/img/nudeshorts_1.jpeg",
@@ -156,6 +166,7 @@ export const categories: Category[] = [
         name: "Kit Legging + Top Verde",
         price: 45.12,
         weight: 0.40, // em kg = 250g
+        hasSingleSize: true,
         images: [
           "/img/kitlegginggreen.jpeg",
           "/img/kitlegginggreen_1.jpeg",
@@ -168,6 +179,7 @@ export const categories: Category[] = [
         name: "Kit Legging + Top Vermelho",
         price: 45.12,
         weight: 0.40, // em kg = 250g
+        hasSingleSize: true,
         images: [
           "/img/kitleggingred.jpeg",
           "/img/kitleggingred_1.jpeg",
@@ -179,6 +191,7 @@ export const categories: Category[] = [
         name: "Kit Legging + Top Cinza Claro",
         price: 45.12,
         weight: 0.40, // em kg = 250g
+        hasSingleSize: true,
         images: [
           "/img/kitleggingray.jpeg",
           "/img/kitleggingray_1.jpeg",
@@ -190,6 +203,7 @@ export const categories: Category[] = [
         name: "Kit Legging + Top Roxo",
         price: 45.12,
         weight: 0.40, // em kg = 250g
+        hasSingleSize: true,
         images: [
           "/img/kitlegginpurple.jpeg",
           "/img/kitlegginpurple_1.jpeg",
@@ -201,6 +215,7 @@ export const categories: Category[] = [
         name: "Kit Legging + Top Cinza Escuro",
         price: 45.12,
         weight: 0.40, // em kg = 250g
+        hasSingleSize: true,
         images: [
           "/img/kitleggingray_2.jpeg",
           "/img/kitleggingray_3.jpeg",
@@ -211,6 +226,7 @@ export const categories: Category[] = [
         id: "p15",
         name: "Kit Legging + Top Rosa",
         weight: 0.40, // em kg = 250g
+        hasSingleSize: true,
         price: 45.12,
         images: [
           "/img/kitlegginpink.jpeg",
@@ -371,6 +387,7 @@ export const categories: Category[] = [
         name: "Empina Bumbum",
         price: 32.77,
         weight: 0.38, // em kg = 380g
+        hasSingleSize: true,
         images: [
           "/img/EMPINABUMBUM_1.jpeg",
 
@@ -385,6 +402,7 @@ export const categories: Category[] = [
         name: "Empina Bumbum",
         price: 32.77,
         weight: 0.40, // em kg = 250g
+        hasSingleSize: true,
         images: [
           "/img/EMPINABUMBUM_2.jpeg",
 
@@ -399,6 +417,7 @@ export const categories: Category[] = [
         name: "Empina Bumbum",
         price: 32.77,
         weight: 0.50, // em kg = 250g
+        hasSingleSize: true,
         images: [
           "/img/EMPINABUMBUM_3.jpeg",
 
@@ -413,6 +432,7 @@ export const categories: Category[] = [
         name: "Empina Bumbum",
         price: 32.77,
         weight: 0.50, // em kg = 250g
+        hasSingleSize: true,
         images: [
           "/img/EMPINABUMBUM_4.jpeg",
 
@@ -437,6 +457,7 @@ export const categories: Category[] = [
         name: "Macaquinho Tyedye Verde",
         price: 57.65,
         weight: 0.50, // em kg = 250g
+        hasSingleSize: true,
         images: [
           "/img/MACAQUINHOTYEDYE_1.jpeg",
           "/img/MACAQUINHOTYEDYE_2.jpeg",
@@ -454,6 +475,7 @@ export const categories: Category[] = [
         name: "Macaquinho Tyedye Rosa",
         price: 57.65,
         weight: 0.50, // em kg = 250g
+        hasSingleSize: true,
         images: [
           "/img/MACAQUINHOTYEDYE_4.jpeg",
           "/img/MACAQUINHOTYEDYE_5.jpeg",
@@ -471,6 +493,7 @@ export const categories: Category[] = [
         name: "Macaquinho Tyedye Preto",
         price: 57.65,
         weight: 0.50, // em kg = 250g
+        hasSingleSize: true,
         images: [
           "/img/MACAQUINHOTYEDYE_7.jpeg",
           "/img/MACAQUINHOTYEDYE_8.jpeg",
@@ -487,6 +510,7 @@ export const categories: Category[] = [
         name: "Macaquinho Tyedye Cinza",
         price: 57.65,
         weight: 0.50, // em kg = 250g
+        hasSingleSize: true,
         images: [
           "/img/MACAQUINHOTYEDYE_10.jpeg",
           "/img/MACAQUINHOTYEDYE_11.jpeg",
@@ -515,6 +539,7 @@ export const categories: Category[] = [
         name: "Conjunto Empina Bumbum Yoga Roxo",
         price: 37.48,
         weight: 0.50, // em kg = 250g
+        hasSingleSize: true,
         images: [
           "/img/empinabumbumyoga_azul-1.jpeg",
           "/img/empinabumbumyoga_azul.jpeg",
@@ -530,6 +555,7 @@ export const categories: Category[] = [
         name: "Conjunto Empina Bumbum Yoga Azul Bebe",
         price: 37.48,
         weight: 0.50, // em kg = 250g
+        hasSingleSize: true,
         images: [
           "/img/empinabumbumyoga_azul-bebe-1.jpeg",
           "/img/empinabumbumyoga_azul-bebe.jpeg",
@@ -545,6 +571,7 @@ export const categories: Category[] = [
         name: "Conjunto Empina Bumbum Yoga Cinza",
         price: 37.48,
         weight: 0.50, // em kg = 250g
+        hasSingleSize: true,
         images: [
           "/img/empinabumbumyoga_cinza-1.jpeg",
           "/img/empinabumbumyoga_cinza.jpeg",
@@ -560,6 +587,7 @@ export const categories: Category[] = [
         name: "Conjunto Empina Bumbum Yoga Cinza",
         price: 37.48,
         weight: 0.50, // em kg = 250g
+        hasSingleSize: true,
         images: [
           "/img/empinabumbumyoga_rosa-1.jpeg",
           "/img/empinabumbumyoga_rosa.jpeg",
@@ -575,6 +603,7 @@ export const categories: Category[] = [
         name: "Conjunto Empina Bumbum Yoga Cinza",
         price: 37.48,
         weight: 0.50, // em kg = 250g
+        hasSingleSize: true,
         images: [
           "/img/empinabumbumyoga_vermelho-2.jpeg",
           "/img/empinabumbumyoga_vermelho-1.jpeg",

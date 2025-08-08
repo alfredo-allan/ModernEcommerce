@@ -7,17 +7,13 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
-
 import { Navigation, Pagination } from 'swiper/modules';
-
-
-const sizes = ['P', 'M', 'G'];
 
 export const ProductPage = () => {
   const [, params] = useRoute('/produto/:id');
+  const product = getProductById(params?.id || '');
   const [selectedSize, setSelectedSize] = useState<string | null>(null);
   const [isAdding, setIsAdding] = useState(false);
-  const product = getProductById(params?.id || '');
   const { addItem } = useCart();
 
   if (!product) {
@@ -34,6 +30,9 @@ export const ProductPage = () => {
       </div>
     );
   }
+
+  // Defina sizes dinamicamente aqui, após carregar o produto
+  const sizes = product.hasSingleSize ? ['Único'] : ['P', 'M', 'G'];
 
   const handleAddToCart = () => {
     if (!selectedSize) return;
@@ -53,10 +52,9 @@ export const ProductPage = () => {
             slidesPerView={1}
             navigation
             pagination={{ clickable: true }}
-            modules={[Navigation, Pagination]} // <- ESSENCIAL!
+            modules={[Navigation, Pagination]} // ESSENCIAL!
             className="rounded-xl aspect-square overflow-hidden"
           >
-            {/* Imagens */}
             {product.images?.map((src, index) => (
               <SwiperSlide key={`img-${index}`}>
                 <img
@@ -67,22 +65,16 @@ export const ProductPage = () => {
               </SwiperSlide>
             ))}
 
-            {/* Vídeos */}
             {product.videos?.map((videoSrc, index) => (
               <SwiperSlide key={`vid-${index}`}>
-                <video
-                  controls
-                  className="w-full h-full object-cover"
-                >
+                <video controls className="w-full h-full object-cover">
                   <source src={videoSrc} type="video/mp4" />
                   Seu navegador não suporta vídeo.
                 </video>
               </SwiperSlide>
             ))}
           </Swiper>
-
         </div>
-
 
         {/* Product Details */}
         <div className="flex flex-col space-y-6">
@@ -110,11 +102,11 @@ export const ProductPage = () => {
               {sizes.map((size) => (
                 <Button
                   key={size}
-                  variant={selectedSize === size ? "default" : "outline"}
+                  variant={selectedSize === size ? 'default' : 'outline'}
                   onClick={() => setSelectedSize(size)}
                   className={`px-4 py-2 ${selectedSize === size
-                    ? 'bg-blue-500 hover:bg-blue-600 border-blue-500'
-                    : 'border-gray-300 dark:border-gray-600 hover:border-blue-500'
+                      ? 'bg-blue-500 hover:bg-blue-600 border-blue-500'
+                      : 'border-gray-300 dark:border-gray-600 hover:border-blue-500'
                     }`}
                 >
                   {size}
@@ -127,10 +119,9 @@ export const ProductPage = () => {
             onClick={handleAddToCart}
             disabled={!selectedSize || isAdding}
             className={`w-full py-4 font-semibold transition-colors ${isAdding
-              ? 'bg-green-500 hover:bg-green-600'
-              : 'bg-blue-500 hover:bg-blue-600'
-              } ${!selectedSize ? 'opacity-50 cursor-not-allowed' : ''
-              }`}
+                ? 'bg-green-500 hover:bg-green-600'
+                : 'bg-blue-500 hover:bg-blue-600'
+              } ${!selectedSize ? 'opacity-50 cursor-not-allowed' : ''}`}
           >
             {isAdding ? 'Adicionado à Sacola!' : 'Adicionar à Sacola'}
           </Button>

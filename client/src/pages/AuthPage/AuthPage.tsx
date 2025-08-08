@@ -7,12 +7,27 @@ import {
     buscarEnderecoPorCEP,
 } from './api';
 import { formatCPF, formatarCEP, limparCEP } from '@/utils/formatters';
-import ResponseModal from '../../components/ResponseModal'; // ajuste o caminho conforme seu projeto
+import ResponseModal from '../../components/ResponseModal';
 
 type TipoPessoa = 'fisica' | 'juridica';
+type AuthMode = 'login' | 'register';
 
-export const AuthPage = () => {
-    const [isLogin, setIsLogin] = useState(true);
+interface AuthPageProps {
+    initialMode?: AuthMode; // opcional, padrão login
+}
+
+export const AuthPage = ({ initialMode = 'login' }: AuthPageProps) => {
+    const [location] = useLocation();
+
+    // Estado do modo, inicializado pelo query param ou prop
+    const [isLogin, setIsLogin] = useState(() => {
+        const params = new URLSearchParams(location.split('?')[1]);
+        const view = params.get('view');
+        if (view === 'register') return false;
+        if (view === 'login') return true;
+        return initialMode === 'login';
+    });
+
     const [loading, setLoading] = useState(false);
     const [, navigate] = useLocation();
     const { login } = useAuth();
@@ -37,10 +52,17 @@ export const AuthPage = () => {
     const [modalOpen, setModalOpen] = useState(false);
     const [modalType, setModalType] = useState<'success' | 'error'>('success');
     const [modalMessage, setModalMessage] = useState('');
+    const [showPassword, setShowPassword] = useState(false);
 
+    // Atualiza isLogin se a query param mudar (navegação interna)
+    useEffect(() => {
+        const params = new URLSearchParams(location.split('?')[1]);
+        const view = params.get('view');
+        if (view === 'register') setIsLogin(false);
+        else if (view === 'login') setIsLogin(true);
+    }, [location]);
 
-
-    // CEP → ViaCEP
+    // Busca endereço ao mudar CEP
     useEffect(() => {
         const fetchEndereco = async () => {
             if (formData.endereco.cep.length === 8) {
@@ -61,7 +83,7 @@ export const AuthPage = () => {
         fetchEndereco();
     }, [formData.endereco.cep]);
 
-    // Formatação automática
+    // Formatação helpers
     const formatNome = (value: string) =>
         value.replace(/\b\w/g, (l) => l.toUpperCase());
 
@@ -73,7 +95,7 @@ export const AuthPage = () => {
             .replace(/\D/g, '')
             .replace(/^(\d{2})(\d{3})(\d{3})(\d{4})(\d{2}).*/, '$1.$2.$3/$4-$5');
 
-    // Handle submit
+    // Submissão do formulário
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setLoading(true);
@@ -97,6 +119,8 @@ export const AuthPage = () => {
                 setModalMessage(res.data.message || 'Cadastro realizado com sucesso!');
                 setModalOpen(true);
                 setIsLogin(true);
+                // Atualiza URL para login para manter sincronizado
+                navigate('/auth?view=login', { replace: true });
             } else {
                 setModalType('error');
                 setModalMessage(res.error || 'Erro no cadastro');
@@ -107,16 +131,17 @@ export const AuthPage = () => {
         setLoading(false);
     };
 
-    const [showPassword, setShowPassword] = useState(false);
-
     const toggleShowPassword = () => {
         setShowPassword((prev) => !prev);
     };
+
     const toggleMode = () => {
         setIsLogin((prev) => !prev);
         setModalOpen(false);
         setModalMessage('');
         setModalType('success');
+        // Atualiza a URL para manter sincronizado com o estado
+        navigate(isLogin ? '/auth?view=register' : '/auth?view=login', { replace: true });
     };
 
     return (
@@ -129,6 +154,7 @@ export const AuthPage = () => {
                 <form className="space-y-4" onSubmit={handleSubmit}>
                     {!isLogin && (
                         <>
+                            {/* Nome */}
                             <div>
                                 <label className="block text-sm font-medium mb-1">Nome</label>
                                 <input
@@ -145,6 +171,7 @@ export const AuthPage = () => {
                                 />
                             </div>
 
+                            {/* Telefone */}
                             <div>
                                 <label className="block text-sm font-medium mb-1">Telefone</label>
                                 <input
@@ -160,6 +187,7 @@ export const AuthPage = () => {
                                 />
                             </div>
 
+                            {/* Tipo Pessoa */}
                             <div>
                                 <label className="block text-sm font-medium mb-1">Tipo de Pessoa</label>
                                 <select
@@ -177,6 +205,7 @@ export const AuthPage = () => {
                                 </select>
                             </div>
 
+                            {/* CPF ou CNPJ */}
                             {formData.tipo_pessoa === 'fisica' && (
                                 <div>
                                     <label className="block text-sm font-medium mb-1">CPF</label>
@@ -194,7 +223,6 @@ export const AuthPage = () => {
                                         placeholder="000.000.000-00"
                                     />
                                 </div>
-
                             )}
 
                             {formData.tipo_pessoa === 'juridica' && (
@@ -232,6 +260,7 @@ export const AuthPage = () => {
                                 </>
                             )}
 
+                            {/* CEP */}
                             <div>
                                 <label className="block text-sm font-medium mb-1">CEP</label>
                                 <input
@@ -247,11 +276,11 @@ export const AuthPage = () => {
                                         }
                                     }}
                                     className="input"
-                                    maxLength={9} // 00000-000
+                                    maxLength={9}
                                 />
                             </div>
 
-
+                            {/* Endereço */}
                             <div>
                                 <label className="block text-sm font-medium mb-1">Rua</label>
                                 <input
@@ -302,6 +331,7 @@ export const AuthPage = () => {
                         </>
                     )}
 
+                    {/* Email */}
                     <div>
                         <label className="block text-sm font-medium mb-1">Email</label>
                         <input
@@ -315,6 +345,7 @@ export const AuthPage = () => {
                         />
                     </div>
 
+                    {/* Senha */}
                     <div className="relative">
                         <label className="block text-sm font-medium mb-1">Senha</label>
                         <input
@@ -330,12 +361,13 @@ export const AuthPage = () => {
                         <button
                             type="button"
                             onClick={toggleShowPassword}
-                            className="absolute right-2 top-[34px] md:top-[38px] text-gray-500 hover:text-gray-700">
+                            className="absolute right-2 top-[34px] md:top-[38px] text-gray-500 hover:text-gray-700"
+                        >
                             {showPassword ? '🙈' : '👁️'}
                         </button>
                     </div>
 
-
+                    {/* Botão submit */}
                     <button
                         type="submit"
                         disabled={loading}
@@ -345,6 +377,7 @@ export const AuthPage = () => {
                     </button>
                 </form>
 
+                {/* Modal de resposta */}
                 <ResponseModal
                     isOpen={modalOpen}
                     type={modalType}
@@ -352,7 +385,7 @@ export const AuthPage = () => {
                     onClose={() => setModalOpen(false)}
                 />
 
-
+                {/* Link troca modo */}
                 <p className="mt-6 text-center text-sm text-muted-foreground">
                     {isLogin ? 'Não tem uma conta?' : 'Já tem uma conta?'}{' '}
                     <button

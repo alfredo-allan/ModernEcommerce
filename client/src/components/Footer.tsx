@@ -14,7 +14,7 @@ export const Footer = () => {
             <div className="space-y-2 text-gray-600 dark:text-gray-400">
               <p className="flex items-center">
                 <MapPin className="h-4 w-4 mr-2" />
-                R. Aparecida, 141 - Boa Vista              </p>
+                R. Aparecida, 143 - Boa Vista              </p>
               <p className="flex items-center">
                 <span className="w-4 mr-2"></span>
                 São Caetano do Sul - SP, 09572-210              </p>
