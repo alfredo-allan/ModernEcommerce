@@ -32,32 +32,96 @@ export const CartProvider = ({ children }: CartProviderProps) => {
     localStorage.setItem('cartItems', JSON.stringify(items));
   }, [items]);
 
-  const addItem = (product: Product, size: string) => {
+  // 🔥 FUNÇÃO PARA DETERMINAR O TAMANHO PADRÃO
+  const getDefaultSize = (product: Product): string => {
+    if (!product.hasSingleSize) {
+      // Para produtos que não têm tamanho único, retorna vazio
+      // O componente deve exigir seleção manual
+      return '';
+    }
+
+    // Para produtos com tamanho único, define padrão baseado na categoria/produto
+    const productName = product.name.toLowerCase();
+
+    // Macaquinhos - têm P/M e G/GG
+    if (productName.includes('macaquinho')) {
+      return 'P/M'; // padrão menor
+    }
+
+    // Shorts - tamanho único (36-42)
+    if (productName.includes('short')) {
+      return 'Único (36-42)';
+    }
+
+    // Kits Legging + Top
+    if (productName.includes('kit')) {
+      return 'Único';
+    }
+
+    // Empina Bumbum
+    if (productName.includes('empina bumbum') || productName.includes('yoga')) {
+      return 'Único (36-42)';
+    }
+
+    // Fallback genérico
+    return 'Único';
+  };
+
+  // 🔥 ADDITEM REFATORADO
+  const addItem = (product: Product, size?: string) => {
+    let finalSize = size;
+
+    // Se não foi fornecido size, tenta determinar automaticamente
+    if (!size) {
+      if (product.hasSingleSize) {
+        finalSize = getDefaultSize(product);
+      } else {
+        // Para produtos sem tamanho único, o size é obrigatório
+        console.error('Size is required for products without single size:', product.name);
+        return; // Não adiciona se não tiver tamanho
+      }
+    }
+
+    // Valida se ainda temos um size válido
+    if (!finalSize) {
+      console.error('Could not determine size for product:', product.name);
+      return;
+    }
+
     setItems(prevItems => {
       const existingItem = prevItems.find(
-        item => item.id === product.id && item.size === size
+        item => item.id === product.id && item.size === finalSize
       );
 
       if (existingItem) {
-        // Incrementa quantidade
+        // Incrementa quantidade do item existente
         return prevItems.map(item =>
-          item.id === product.id && item.size === size
+          item.id === product.id && item.size === finalSize
             ? { ...item, quantity: item.quantity + 1 }
             : item
         );
       }
 
-      // Novo item: usa a primeira imagem de product.images ou fallback product.image
-      const image = product.images?.[0] || product.image || '';
-
-      return [...prevItems, {
+      // 🔥 NOVO ITEM - INCLUI TODAS AS PROPRIEDADES NECESSÁRIAS
+      const newCartItem: CartItem = {
         id: product.id,
         name: product.name,
         price: product.price,
-        size,
+        size: finalSize,
         quantity: 1,
-        image,
-      }];
+        image: product.images?.[0] || product.image || '',
+        // Inclui propriedades adicionais que podem ser necessárias
+        images: product.images,
+        videos: product.videos,
+        description: product.description,
+        weight: product.weight,
+        height: product.height,
+        width: product.width,
+        length: product.length,
+        hasSingleSize: product.hasSingleSize,
+      };
+
+      return [...prevItems, newCartItem];
     });
   };
 
