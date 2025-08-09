@@ -182,7 +182,7 @@ const CheckoutPage = () => {
                     name: item.name,
                     quantity: item.quantity,
                     unitary_value: item.price || 0,
-                    size: item.size,  // <-- aqui
+                    size: item.size,  // ✅ Já estava passando
                 })),
             });
 
@@ -199,6 +199,7 @@ const CheckoutPage = () => {
                         name: item.name,
                         quantity: item.quantity,
                         unitary_value: item.price || 0,
+                        size: item.size,  // 🔥 ADICIONAR ESTA LINHA
                     })),
                     frete: deliveryCost,
                     total: totalFinal,
