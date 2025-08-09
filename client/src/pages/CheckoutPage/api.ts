@@ -13,6 +13,7 @@ export interface ProdutoFrete {
     width?: number;
     length?: number;
     weight: number;
+    size?: string;  // <-- adicionar aqui
 }
 
 export interface CalcularFretePayload {
@@ -139,14 +140,28 @@ export const criarOrdem = async (payload: {
         name: string;
         quantity: number;
         unitary_value: number;
+        size?: string;  // campo opcional para tamanho
     }[];
     frete: number;
     total: number;
 }) => {
     try {
-        const res = await axios.post(`${API_MELHOR_ENVIO}/orders/`, payload, {
+        // Garantir que o campo size será enviado se existir
+        const payloadComSize = {
+            ...payload,
+            products: payload.products.map((produto) => ({
+                name: produto.name,
+                quantity: produto.quantity,
+                unitary_value: produto.unitary_value,
+                // só passa size se existir
+                ...(produto.size ? { size: produto.size } : {}),
+            })),
+        };
+
+        const res = await axios.post(`${API_MELHOR_ENVIO}/orders/`, payloadComSize, {
             withCredentials: true,
         });
+
         return { success: true, data: res.data };
     } catch (error: any) {
         console.error("Erro ao criar ordem:", error);
@@ -156,6 +171,7 @@ export const criarOrdem = async (payload: {
         };
     }
 };
+
 
 // ✅ Calcular opções de frete - REFATORADO para retornar todas as opções
 export const getFrete = async (
