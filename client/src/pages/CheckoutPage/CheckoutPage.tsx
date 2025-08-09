@@ -118,6 +118,7 @@ const CheckoutPage = () => {
                 width: item.width ?? 10,
                 length: item.length ?? 10,
                 weight: item.weight ?? 0.3,
+                size: item.size,  // <-- aqui
             })),
         };
 
@@ -181,6 +182,7 @@ const CheckoutPage = () => {
                     name: item.name,
                     quantity: item.quantity,
                     unitary_value: item.price || 0,
+                    size: item.size,  // <-- aqui
                 })),
             });
 
